@@ -62,8 +62,24 @@
       </h1>
 
       <header class="frame">
-        <p class="frame__tag">Portfolio, 2026</p>
-        <p class="frame__memory">Designing in memory of Franky 🐾</p>
+        <p class="frame__memory" tabindex="0">
+          Designing in memory of Franky, 2026 🐾
+          <span class="franky" aria-hidden="true">
+            <svg class="franky__halo" viewBox="0 0 14 5" shape-rendering="crispEdges">
+              <g fill="#f2c14e">
+                <rect x="4" y="0" width="6" height="1"/>
+                <rect x="2" y="1" width="2" height="1"/>
+                <rect x="10" y="1" width="2" height="1"/>
+                <rect x="0" y="2" width="2" height="1"/>
+                <rect x="12" y="2" width="2" height="1"/>
+                <rect x="2" y="3" width="2" height="1"/>
+                <rect x="10" y="3" width="2" height="1"/>
+                <rect x="4" y="4" width="6" height="1"/>
+              </g>
+            </svg>
+            <canvas class="franky__photo" width="180" height="180"></canvas>
+          </span>
+        </p>
       </header>
 
       <!-- WORK -->
@@ -376,6 +392,7 @@
     </main>
 
     <script src="js/gate.js"></script>
+    <script src="js/franky.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <script src="js/menu.js"></script>
   </body>
