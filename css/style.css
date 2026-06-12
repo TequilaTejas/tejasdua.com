@@ -205,12 +205,12 @@ main > * {
 .cover__item:nth-child(5)  { grid-area: 2 / 19; }
 .cover__item:nth-child(6)  { grid-area: 4 / 2; }
 .cover__item:nth-child(7)  { grid-area: 5 / 6; }
-.cover__item:nth-child(8)  { grid-area: 4 / 11; }
+.cover__item:nth-child(8)  { grid-area: 3 / 8; }
 .cover__item:nth-child(9)  { grid-area: 6 / 14; }
 .cover__item:nth-child(10) { grid-area: 5 / 18; }
 .cover__item:nth-child(11) { grid-area: 7 / 4; }
 .cover__item:nth-child(12) { grid-area: 8 / 8; }
-.cover__item:nth-child(13) { grid-area: 7 / 12; }
+.cover__item:nth-child(13) { grid-area: 8 / 13; }
 .cover__item:nth-child(14) { grid-area: 9 / 17; }
 
 /* ---------- hero title ---------- */
@@ -685,8 +685,8 @@ main > * {
 .gate__box {
   display: grid;
   justify-items: center;
-  gap: 1rem;
-  padding: clamp(2rem, 5vw, 3.5rem);
+  gap: 0.9rem;
+  padding: clamp(1.6rem, 4vw, 2.4rem) clamp(1.8rem, 4vw, 2.8rem) clamp(1rem, 3vw, 1.6rem);
   border: 2px solid var(--color-ink);
   box-shadow: 8px 8px 0 var(--color-ember-deep);
   text-align: center;

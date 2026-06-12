@@ -84,13 +84,16 @@ const buildTimeline = (reverseEase, withTiles) => {
   const tl = gsap.timeline({ paused: true });
   tl.addLabel('go', 0);
 
+  // easeReverse 'expo.in' makes the close accelerate into the center,
+  // so the shrinking clip window snaps shut instead of lingering as a
+  // small dark box mid-screen.
   tl.to(
     menu,
     {
       clipPath: CLIP_OPEN,
       duration: CLIP_DURATION,
       ease: 'expo',
-      easeReverse: 'expo',
+      easeReverse: 'expo.in',
     },
     `go+=${withTiles ? CLIP_DELAY : 0}`
   );
@@ -177,7 +180,7 @@ const closeMenuOnto = (next) => {
   syncA11y();
 
   rebuildAt(1, FULL_CLOSE_EASE, next === 'home');
-  timeline.timeScale(1).reverse();
+  timeline.timeScale(next === 'home' ? 1 : 1.3).reverse();
   timeline.eventCallback('onReverseComplete', () => {
     navigating = false;
   });
