@@ -31,7 +31,17 @@ const INTERRUPT_TIMESCALE = 2.5;
 const CLIP_CLOSED = 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)';
 const CLIP_OPEN = 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)';
 
-const VIEWS = ['home', 'work', 'about', 'playground', 'writing', 'contact'];
+const VIEWS = [
+  'home',
+  'work',
+  'about',
+  'playground',
+  'writing',
+  'contact',
+  'cs-fitness',
+  'cs-almanac',
+  'cs-store',
+];
 
 let view = 'home';
 let isOpen = false;
@@ -255,6 +265,15 @@ const init = () => {
     item.addEventListener('click', (event) => {
       event.preventDefault();
       navigateTo(item.dataset.target);
+    });
+  });
+
+  // In-page links (work rows, case-study back links) ride the same
+  // menu-sweep transition as the menu items.
+  document.querySelectorAll('[data-nav]').forEach((el) => {
+    el.addEventListener('click', (event) => {
+      event.preventDefault();
+      navigateTo(el.dataset.nav);
     });
   });
 

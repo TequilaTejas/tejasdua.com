@@ -9,11 +9,23 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Handjet:wght@300..900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Handjet:wght@300..900&family=Bricolage+Grotesque:wght@400;600&display=swap" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <body class="loading" data-view="home">
+  <body class="loading gated" data-view="home">
+    <div class="gate" role="dialog" aria-label="Password required">
+      <div class="gate__box">
+        <p class="gate__logo">TD</p>
+        <p class="gate__hint">This portfolio is private.</p>
+        <form class="gate__form">
+          <input class="gate__input" type="password" placeholder="Password" autocomplete="off" aria-label="Password" />
+          <button class="gate__submit" type="submit">Enter</button>
+        </form>
+        <p class="gate__error" role="alert"></p>
+      </div>
+    </div>
+
     <main>
       <button class="wordmark" aria-label="Go to home">TD</button>
 
@@ -61,23 +73,23 @@
           <h2 class="page__title" data-reveal>Selected<br />Projects</h2>
           <ul class="worklist">
             <li class="worklist__row" data-reveal>
-              <a href="#" class="worklist__link">
+              <a href="#cs-fitness" class="worklist__link" data-nav="cs-fitness">
                 <span class="worklist__name">Fitness Companion</span>
-                <span class="worklist__meta">AI coach on WhatsApp · 2026</span>
+                <span class="worklist__meta">Case study · AI coach on WhatsApp · 2026</span>
               </a>
               <img class="worklist__thumb" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=480&q=80" alt="Fitness Companion preview" loading="lazy" />
             </li>
             <li class="worklist__row" data-reveal>
-              <a href="#" class="worklist__link">
+              <a href="#cs-almanac" class="worklist__link" data-nav="cs-almanac">
                 <span class="worklist__name">Training Almanac</span>
-                <span class="worklist__meta">Health dashboard · 2026</span>
+                <span class="worklist__meta">Case study · Health dashboard · 2026</span>
               </a>
               <img class="worklist__thumb" src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=480&q=80" alt="Training Almanac preview" loading="lazy" />
             </li>
             <li class="worklist__row" data-reveal>
-              <a href="#" class="worklist__link">
+              <a href="#cs-store" class="worklist__link" data-nav="cs-store">
                 <span class="worklist__name">Sevkaan Store</span>
-                <span class="worklist__meta">Whitelabel commerce · 2026</span>
+                <span class="worklist__meta">Case study · Whitelabel commerce · 2026</span>
               </a>
               <img class="worklist__thumb" src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=480&q=80" alt="Sevkaan Store preview" loading="lazy" />
             </li>
@@ -206,6 +218,151 @@
         </div>
       </section>
 
+      <!-- CASE STUDY: FITNESS COMPANION -->
+      <section class="page page--case" data-page="cs-fitness" aria-hidden="true">
+        <div class="page__inner page__inner--case">
+          <a class="case__back" href="#work" data-nav="work">&larr; Back to Work</a>
+          <p class="page__kicker" data-reveal>Case Study · 2026</p>
+          <h2 class="case__title" data-reveal>A nutrition coach that lives where you already text</h2>
+          <ul class="case__facts" data-reveal>
+            <li><b>Role</b> Product design, front end, prompt design</li>
+            <li><b>Timeline</b> 6 weeks, solo</li>
+            <li><b>Platform</b> WhatsApp + web dashboard</li>
+            <li><b>Stack</b> Gemini, Cloudflare Workers, D1</li>
+          </ul>
+          <img class="case__hero" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1600&q=80" alt="Morning trail run at sunrise" />
+
+          <div class="case__body">
+            <h3>The problem</h3>
+            <p>Every food-tracking app dies the same death. Day one, you log everything. Day nine, you skip dinner because searching "dal makhani homemade 1 bowl" and picking from six wrong matches feels like filing taxes. The friction isn't motivation. It's the interface: a database UI bolted onto a habit that happens at the dinner table, phone in one hand, spoon in the other.</p>
+            <p>The bet: kill the app entirely. People already narrate their day in chat. If logging a meal is literally sending the message "2 rotis, paneer bhurji, one chai", the cost of the habit drops to zero.</p>
+
+            <blockquote class="case__pull">The best tracking interface is the one your thumb already knows.</blockquote>
+
+            <h3>Why WhatsApp</h3>
+            <p>I interviewed eight friends who'd abandoned MyFitnessPal-style apps. All eight still sent food photos to friends or partners "as confession". The behavior existed; only the destination was wrong. WhatsApp also removes onboarding: no install, no account creation, no password. You message a number, and you're a user.</p>
+
+            <h3>Designing a conversation, not screens</h3>
+            <p>Conversational products still need design decisions, they're just invisible ones. The three that mattered most:</p>
+            <p><strong>Replies had to be scannable in one glance.</strong> Early versions answered a logged meal with a paragraph. Testers stopped reading by day three. The fix was a strict reply grammar: confirmation line, calorie line, three macro chips, then one short coaching nudge only when warranted. Same shape every time, so the eye learns where to look.</p>
+            <p><strong>Ambiguity gets one question, never two.</strong> If "rice" could be 150 or 400 calories, the bot asks "katori or plate?" and commits. A clarifying question is a tax; two is churn.</p>
+            <p><strong>The day rolls over at 5 a.m., not midnight.</strong> Real people eat at 1 a.m. and feel it belongs to "today". Cutting the day at midnight made late snacks vanish into tomorrow's budget and broke trust in the numbers.</p>
+
+            <figure class="case__figure">
+              <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1400&q=80" alt="Forest path, stand-in for chat flow diagram" />
+              <figcaption>Stand-in image. Replace with the chat-flow diagram and reply-grammar spec.</figcaption>
+            </figure>
+
+            <h3>What shipped</h3>
+            <p>Free-text and photo meal logging with portion inference, workout logging in the same thread, Apple Health activity ingest, and a weekly recap message that reads like a coach's note instead of a spreadsheet. A companion web dashboard handles the dense views chat is bad at: trends, weekly rings, body metrics.</p>
+
+            <div class="case__stats">
+              <div><span>9 of 11</span>testers still logging daily at week four</div>
+              <div><span>~4 sec</span>median time to log a meal, photo included</div>
+              <div><span>0</span>onboarding screens between install and first log</div>
+            </div>
+
+            <h3>What I learned</h3>
+            <p>Chat products punish vagueness instantly: there is no layout to hide behind, only the next sentence. Writing the bot's voice was the highest-leverage design work of the project, ahead of any visual decision. And constraints breed retention: because WhatsApp allows so little UI, there was nothing to redesign, only habits to honor. (Numbers above are from a small private beta; treat as directional.)</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CASE STUDY: TRAINING ALMANAC -->
+      <section class="page page--case" data-page="cs-almanac" aria-hidden="true">
+        <div class="page__inner page__inner--case">
+          <a class="case__back" href="#work" data-nav="work">&larr; Back to Work</a>
+          <p class="page__kicker" data-reveal>Case Study · 2026</p>
+          <h2 class="case__title" data-reveal>Redesigning a health dashboard people check twice a day</h2>
+          <ul class="case__facts" data-reveal>
+            <li><b>Role</b> Product design, design system, front end</li>
+            <li><b>Timeline</b> 3 weeks, solo</li>
+            <li><b>Platform</b> Responsive web app</li>
+            <li><b>Stack</b> Vanilla JS, uPlot, Cloudflare Workers</li>
+          </ul>
+          <img class="case__hero" src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=1600&q=80" alt="Open valley at golden hour" />
+
+          <div class="case__body">
+            <h3>The starting point</h3>
+            <p>The first version of the dashboard borrowed Apple Health's visual language: parchment neutrals, hairline dividers, one polite blue ring. Technically clean, emotionally inert. Usage data told the real story: people opened it after meals to answer one question, "am I on track today?", and the answer was buried below the fold behind charts nobody asked for at that moment.</p>
+
+            <blockquote class="case__pull">A dashboard you check twice a day is not a report. It's a glance with consequences.</blockquote>
+
+            <h3>Reframing the job</h3>
+            <p>I rewrote the brief from "show health data" to "answer today's question in under three seconds, then reward curiosity". That single sentence reordered the entire information architecture. Today's calories and macros moved to a hero position. History, patterns, and body metrics became destinations you choose, not noise you scroll past.</p>
+
+            <h3>Design decisions that carried the redesign</h3>
+            <p><strong>One tri-ring instead of one ring plus a list.</strong> Protein, carbs, and fat became three concentric arcs with staggered animation on load. The shape answers "how is today going?" as a single image; the old layout demanded four separate reads.</p>
+            <p><strong>Color as identity, not decoration.</strong> Blue means protein everywhere: ring, chips, charts, history. Same for green carbs and red fat. After two days, users stop reading labels; the palette becomes the legend.</p>
+            <p><strong>Energy over neutrality.</strong> Electric blue primary, white cards with 26-pixel radii, glow shadows on interactive elements, Plus Jakarta Sans for a sportier voice. A fitness tool should feel like the gym, not the clinic.</p>
+            <p><strong>Skeletons that match the real layout.</strong> The first rewrite shipped without loading states and the app felt broken on slow connections even though it wasn't. Re-adding layout-true skeletons fixed perceived speed without touching actual speed.</p>
+
+            <figure class="case__figure">
+              <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=1400&q=80" alt="Lakeside cliffs, stand-in for before-after dashboard shots" />
+              <figcaption>Stand-in image. Replace with before / after dashboard screenshots.</figcaption>
+            </figure>
+
+            <h3>Outcome</h3>
+            <div class="case__stats">
+              <div><span>3 s</span>to the day's status, down from a scroll</div>
+              <div><span>4 views</span>collapsed into one glance + three destinations</div>
+              <div><span>1 deploy</span>vanilla stack, no build pipeline to maintain</div>
+            </div>
+            <p>The redesign shipped to production on Cloudflare Workers in a single deploy. The biggest compliment came from the most honest metric: the person who used it most stopped sending me screenshots asking what things meant. (Sample project; numbers are observational, not instrumented.)</p>
+
+            <h3>What I learned</h3>
+            <p>Information architecture is the redesign; visual style is the announcement of it. And borrowed design languages carry borrowed assumptions: Apple Health is built for monthly reflection, so cloning its calm made a twice-daily tool feel asleep.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CASE STUDY: SEVKAAN STORE -->
+      <section class="page page--case" data-page="cs-store" aria-hidden="true">
+        <div class="page__inner page__inner--case">
+          <a class="case__back" href="#work" data-nav="work">&larr; Back to Work</a>
+          <p class="page__kicker" data-reveal>Case Study · 2026</p>
+          <h2 class="case__title" data-reveal>A storefront that converts an audience without pretending to be Amazon</h2>
+          <ul class="case__facts" data-reveal>
+            <li><b>Role</b> Product design, front end</li>
+            <li><b>Timeline</b> 2 weeks, solo</li>
+            <li><b>Platform</b> Web, mobile-first</li>
+            <li><b>Stack</b> React, GitHub Pages</li>
+          </ul>
+          <img class="case__hero" src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1600&q=80" alt="Mountain lake panorama" />
+
+          <div class="case__body">
+            <h3>Context</h3>
+            <p>Sevkaan streams Valorant to a young, phone-first audience. The business: gift cards his viewers buy as top-ups. The existing path was a generic marketplace link, which converted poorly because it looked like a scam to exactly the audience most fluent in spotting scams. The brief was a whitelabel store that feels like an extension of the stream, not a third-party checkout.</p>
+
+            <blockquote class="case__pull">For a creator store, trust is the conversion funnel. Everything else is decoration.</blockquote>
+
+            <h3>Who's buying</h3>
+            <p>Three buyer types emerged from chat logs and a quick poll: the impulse buyer mid-stream who wants one tap from chat to paid, the comparison shopper deciding between denominations, and the gifter buying for a friend. The impulse buyer pays everyone's rent, so the design optimizes for them first.</p>
+
+            <h3>Two paths, one page</h3>
+            <p><strong>Instant buy.</strong> From the stream link, a viewer lands on a product detail page with the most popular denomination pre-selected and a single dominant action. No cart, no account, no detour. Three taps from chat message to payment sheet.</p>
+            <p><strong>Browse.</strong> The same PDP quietly serves the comparison shopper: denomination switcher, delivery explainer, and an FAQ written in the streamer's actual voice rather than legal boilerplate.</p>
+            <p><strong>Trust signals where doubt happens, not in a footer.</strong> Delivery-time promise sits next to the price. "How codes arrive" sits next to the buy button. The streamer's identity, colors, handle, inside jokes, runs through every screen, because his face is the brand guarantee.</p>
+
+            <figure class="case__figure">
+              <img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=1400&q=80" alt="Misty peaks, stand-in for storefront screens" />
+              <figcaption>Stand-in image. Replace with PDP and instant-buy flow screens.</figcaption>
+            </figure>
+
+            <h3>Outcome</h3>
+            <div class="case__stats">
+              <div><span>3 taps</span>from stream chat to payment sheet</div>
+              <div><span>2 weeks</span>brief to deployed storefront</div>
+              <div><span>1 codebase</span>whitelabel-ready for the next creator</div>
+            </div>
+            <p>The store shipped as a deployable demo with the whitelabel layer separated from the storefront logic, so the next creator is a config file, not a rebuild. (Sample project shipped as a demo; conversion numbers pending a live campaign.)</p>
+
+            <h3>What I learned</h3>
+            <p>Audience-native design beats e-commerce convention. Patterns that look "unprofessional" by marketplace standards, memes in the FAQ, the streamer's slang on buttons, are precisely what made the store read as legitimate to its actual buyers. Professional is relative to the audience's home turf.</p>
+          </div>
+        </div>
+      </section>
+
       <!-- MENU -->
       <nav class="menu" id="menu" aria-hidden="true">
         <div class="menu__bg" aria-hidden="true"></div>
@@ -218,6 +375,7 @@
       </nav>
     </main>
 
+    <script src="js/gate.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <script src="js/menu.js"></script>
   </body>
