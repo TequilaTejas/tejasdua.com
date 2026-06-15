@@ -31,17 +31,7 @@ const INTERRUPT_TIMESCALE = 2.5;
 const CLIP_CLOSED = 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)';
 const CLIP_OPEN = 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)';
 
-const VIEWS = [
-  'home',
-  'work',
-  'about',
-  'playground',
-  'writing',
-  'contact',
-  'cs-fitness',
-  'cs-almanac',
-  'cs-store',
-];
+const VIEWS = ['home', 'work', 'about', 'playground', 'writing', 'contact'];
 
 let view = 'home';
 let isOpen = false;
