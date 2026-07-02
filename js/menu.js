@@ -31,7 +31,7 @@ const INTERRUPT_TIMESCALE = 2.5;
 const CLIP_CLOSED = 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)';
 const CLIP_OPEN = 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)';
 
-const VIEWS = ['home', 'work', 'about', 'playground', 'writing', 'contact'];
+const VIEWS = ['home', 'work', 'about', 'playground', 'writing', 'contact', 'cs-pai'];
 
 let view = 'home';
 let isOpen = false;
@@ -60,9 +60,10 @@ const syncA11y = () => {
   toggleButton.setAttribute('aria-expanded', String(isOpen));
   toggleButton.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
   menu.setAttribute('aria-hidden', String(!isOpen));
+  const target = view.startsWith('cs-') ? 'work' : view;
   menuItems.forEach((item) => {
     item.tabIndex = isOpen ? 0 : -1;
-    item.classList.toggle('is-current', item.dataset.target === view);
+    item.classList.toggle('is-current', item.dataset.target === target);
   });
 };
 
@@ -236,13 +237,19 @@ const preloadCoverImages = () => {
       (src) =>
         new Promise((resolve) => {
           const img = new Image();
-          img.onload = resolve;
-          img.onerror = resolve;
+          img.onload = img.onerror = resolve;
           img.src = src;
         })
     )
   );
 };
+
+// Never let a stalled image (request opens but never fires load/error, common
+// on flaky networks) trap the whole site behind the loader. Boot regardless
+// after a hard cap; preloading is a nicety, not a gate.
+const MAX_PRELOAD = 2500;
+const withTimeout = (promise, ms) =>
+  Promise.race([promise, new Promise((resolve) => setTimeout(resolve, ms))]);
 
 const init = () => {
   const initial = location.hash.replace('#', '');
@@ -288,7 +295,7 @@ const init = () => {
   });
 };
 
-preloadCoverImages().then(() => {
+withTimeout(preloadCoverImages(), MAX_PRELOAD).then(() => {
   document.body.classList.remove('loading');
   init();
 });

@@ -73,11 +73,11 @@
           <h2 class="page__title" data-reveal>Selected<br />Projects</h2>
           <ul class="worklist">
             <li class="worklist__row" data-reveal>
-              <a href="https://www.figma.com/proto/fZWvN8XauCtWmwd46BbOyD/Portfolio?node-id=1-4882&t=CUnQCotD8SODXFba-1" class="worklist__link" target="_blank" rel="noopener">
-                <span class="worklist__name">Redesigning Presentations.ai <span class="worklist__ext" aria-hidden="true">&#8599;</span></span>
-                <span class="worklist__meta">Case study · The world's most used business tool</span>
+              <a href="#cs-pai" class="worklist__link" data-nav="cs-pai">
+                <span class="worklist__name">Redesigning Presentations.ai</span>
+                <span class="worklist__meta">Case study · Rebuilding the world's most used business tool</span>
               </a>
-              <img class="worklist__thumb" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=480&q=80" alt="Redesigning Presentations.ai preview" loading="lazy" />
+              <img class="worklist__thumb" src="assets/cs-pai/dashboard-browser.jpg" alt="New Presentations.ai dashboard" loading="lazy" />
             </li>
             <li class="worklist__row" data-reveal>
               <a href="https://medium.com/@TejasDua/building-quick-checkout-for-150mn-users-at-disney-hotstar-464b0c26062f" class="worklist__link" target="_blank" rel="noopener">
@@ -201,6 +201,616 @@
             <li data-reveal><a href="https://medium.com/@TejasDua" target="_blank" rel="noopener">Medium</a></li>
             <li data-reveal><a href="https://github.com/tejasdua143" target="_blank" rel="noopener">GitHub</a></li>
           </ul>
+        </div>
+      </section>
+
+      <!-- CASE STUDY: PRESENTATIONS.AI -->
+      <section class="page page--case" data-page="cs-pai" aria-hidden="true">
+        <div class="page__inner page__inner--case">
+          <a class="case__back" href="#work" data-nav="work">&larr; Back to work</a>
+          <p class="page__kicker" data-reveal>Case study · Presentations.ai</p>
+          <h2 class="case__title" data-reveal>Redesigning<br />Presentations.ai</h2>
+
+          <ul class="case__facts" data-reveal>
+            <li><b>Role</b> Product design</li>
+            <li><b>Where</b> Presentations.ai</li>
+            <li><b>Shipped</b> 24 Feb 2026</li>
+            <li><b>Scope</b> Architecture, dashboard, invites</li>
+          </ul>
+
+          <img class="case__hero case__hero--top" data-reveal src="assets/cs-pai/dashboard-browser.jpg" alt="The redesigned Presentations.ai dashboard in a browser window" />
+
+          <div class="case__body">
+            <p class="case__pull" data-reveal>The world's most used business tool hasn't changed in decades. So we rebuilt ours from scratch.</p>
+
+            <h3>The gap we exist to close</h3>
+            <p>Presentations are the language of business, yet the software used to make them hasn't fundamentally changed since the 1990s. PowerPoint and Google Slides digitised paper presentations. They never transformed how we create them.</p>
+            <p>Presentations.ai exists to close the gap between a raw idea and a finished, professional deck. Not eventually. Not after hours of manual work. Right now.</p>
+
+            <h3>The product was holding itself back</h3>
+            <p>There was no shortage of ideas for where the product could go. The existing architecture made most of them impossible to ship. New markets, core features, industry standards; none of it could happen on top of what existed. So we set out to recreate the foundation: scalable, backend driven, and a significantly better experience to use.</p>
+
+            <figure class="case__figure case__figure--full">
+              <img src="assets/cs-pai/old-dashboard.jpg" alt="Screenshot of the old, cluttered Presentations.ai dashboard" loading="lazy" />
+              <figcaption>The old dashboard did the bare minimum.</figcaption>
+            </figure>
+
+            <p class="case__pull">This case study is thin on metrics. The product was too broken for data to lead; we went back to first principles.</p>
+
+            <p>The company's event tracking and funnels could not give granular insights yet. So this is about the thinking, the decisions, and the work. Numbers will come as the product matures. If you want to see how I work with data, read the <a href="https://medium.com/@TejasDua/building-quick-checkout-for-150mn-users-at-disney-hotstar-464b0c26062f" target="_blank" rel="noopener">Hotstar case study</a>.</p>
+
+            <h3>Three fronts, one rebuild</h3>
+            <div class="case__stats">
+              <div><span>Architecture</span>File organisation, collaboration, invite flows and granular access control. Enterprise ready.</div>
+              <div><span>Experience</span>Core flows rethought, navigation simplified, key actions surfaced.</div>
+              <div><span>Look and feel</span>A refreshed visual language and a component system that reflects the intelligence behind the product.</div>
+            </div>
+
+            <h3>The table stakes were missing</h3>
+            <p>The foundation every enterprise tool is built on was missing from ours. We benchmarked the basics.</p>
+
+            <p class="case__table-caption">File management</p>
+            <div class="case__table-wrap">
+              <table class="case__table">
+                <thead>
+                  <tr><th scope="col"></th><th scope="col">Presentations.ai</th><th scope="col">Gamma</th><th scope="col">Notion</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Workspaces</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+                  <tr><td>Nested folders</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+                  <tr><td>Drafts</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+                  <tr><td>Shared with me</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+                  <tr><td>Private folders</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p class="case__table-caption">Collaboration</p>
+            <div class="case__table-wrap">
+              <table class="case__table">
+                <thead>
+                  <tr><th scope="col"></th><th scope="col">Presentations.ai</th><th scope="col">Figma</th><th scope="col">Notion</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>File-level sharing</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+                  <tr><td>Role-based permissions</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+                  <tr><td>Invite via link or email</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+                  <tr><td>Folder-level access control</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+                  <tr><td>Guest access</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Every presentation lived in one endless pile</h3>
+            <p>No folders, no nesting, no grouping. Every deck sat in the same flat list regardless of project, client, or team. There was no way to organise, sort, or find your work efficiently. The product punished its most active users.</p>
+
+            <figure class="case__viz">
+              <div class="case__duo">
+                <div class="pilebox">
+                  <span class="pilebox__label pilebox__label--before">Status quo &middot; one pile</span>
+                  <div class="pile">
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                    <span class="pile__doc"></span>
+                  </div>
+                </div>
+                <div class="pilebox">
+                  <span class="pilebox__label pilebox__label--after">The target &middot; organised</span>
+                  <div class="pile__folders">
+                    <div class="arch__folder">
+                      <div class="arch__folder-name">Clients</div>
+                      <span class="pile__row"></span>
+                      <span class="pile__row"></span>
+                      <span class="pile__row"></span>
+                      <span class="pile__row"></span>
+                    </div>
+                    <div class="arch__folder">
+                      <div class="arch__folder-name">Internal</div>
+                      <span class="pile__row pile__row--ember"></span>
+                      <span class="pile__row"></span>
+                      <span class="pile__row"></span>
+                      <span class="pile__row"></span>
+                    </div>
+                    <div class="arch__folder">
+                      <div class="arch__folder-name">Archive</div>
+                      <span class="pile__row"></span>
+                      <span class="pile__row"></span>
+                      <span class="pile__row"></span>
+                      <span class="pile__row"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption>From one endless pile to a place for everything.</figcaption>
+            </figure>
+
+            <h3>Built for solo use; work isn't</h3>
+            <p>Nobody makes a presentation just for themselves. It gets shared, reviewed, edited, handed off. The product assumed a single user working alone. Real work doesn't look like that.</p>
+
+            <figure class="case__viz">
+              <div class="case__duo">
+                <div class="netbox">
+                  <span class="netbox__label netbox__label--before">Before &middot; solo by design</span>
+                  <svg viewBox="0 0 400 240" width="100%" role="img" aria-label="Network diagram: only one person is connected to the deck; four collaborators are cut off">
+                    <line x1="23" y1="120" x2="140" y2="120" style="stroke: var(--color-ember); stroke-width: 2" />
+                    <line x1="77" y1="37" x2="150" y2="98" style="stroke: var(--color-line); stroke-width: 1.5" stroke-dasharray="5 5" />
+                    <line x1="323" y1="37" x2="260" y2="98" style="stroke: var(--color-line); stroke-width: 1.5" stroke-dasharray="5 5" />
+                    <line x1="353" y1="120" x2="260" y2="120" style="stroke: var(--color-line); stroke-width: 1.5" stroke-dasharray="5 5" />
+                    <line x1="200" y1="186" x2="200" y2="142" style="stroke: var(--color-line); stroke-width: 1.5" stroke-dasharray="5 5" />
+                    <g style="stroke: var(--color-ink-dim); stroke-width: 2">
+                      <line x1="108" y1="62" x2="118" y2="72" />
+                      <line x1="118" y1="62" x2="108" y2="72" />
+                      <line x1="286" y1="62" x2="296" y2="72" />
+                      <line x1="296" y1="62" x2="286" y2="72" />
+                      <line x1="301" y1="115" x2="311" y2="125" />
+                      <line x1="311" y1="115" x2="301" y2="125" />
+                      <line x1="195" y1="158" x2="205" y2="168" />
+                      <line x1="205" y1="158" x2="195" y2="168" />
+                    </g>
+                    <rect x="140" y="98" width="120" height="44" fill="none" style="stroke: var(--color-ink); stroke-width: 2" />
+                    <text x="200" y="125" text-anchor="middle" style="font-family: 'Handjet'; font-size: 20px; fill: var(--color-ink); letter-spacing: 2px">DECK</text>
+                    <rect x="23" y="103" width="48" height="34" fill="none" style="stroke: var(--color-ember); stroke-width: 2" />
+                    <text x="47" y="125" text-anchor="middle" style="font-family: 'Handjet'; font-size: 13px; fill: var(--color-ember)">YOU</text>
+                    <rect x="60" y="20" width="34" height="34" fill="none" style="stroke: var(--color-line); stroke-width: 2" />
+                    <text x="77" y="42" text-anchor="middle" style="font-family: 'Handjet'; font-size: 16px; fill: var(--color-ink-dim)">A</text>
+                    <rect x="306" y="20" width="34" height="34" fill="none" style="stroke: var(--color-line); stroke-width: 2" />
+                    <text x="323" y="42" text-anchor="middle" style="font-family: 'Handjet'; font-size: 16px; fill: var(--color-ink-dim)">B</text>
+                    <rect x="336" y="103" width="34" height="34" fill="none" style="stroke: var(--color-line); stroke-width: 2" />
+                    <text x="353" y="125" text-anchor="middle" style="font-family: 'Handjet'; font-size: 16px; fill: var(--color-ink-dim)">C</text>
+                    <rect x="183" y="186" width="34" height="34" fill="none" style="stroke: var(--color-line); stroke-width: 2" />
+                    <text x="200" y="208" text-anchor="middle" style="font-family: 'Handjet'; font-size: 16px; fill: var(--color-ink-dim)">D</text>
+                  </svg>
+                </div>
+                <div class="netbox">
+                  <span class="netbox__label netbox__label--after">After &middot; built for teams</span>
+                  <svg viewBox="0 0 400 240" width="100%" role="img" aria-label="Network diagram: five people connected to the deck">
+                    <line x1="23" y1="120" x2="140" y2="120" style="stroke: var(--color-ember); stroke-width: 2" />
+                    <line x1="77" y1="37" x2="150" y2="98" style="stroke: var(--color-ember); stroke-width: 2" />
+                    <line x1="323" y1="37" x2="250" y2="98" style="stroke: var(--color-ember); stroke-width: 2" />
+                    <line x1="353" y1="120" x2="260" y2="120" style="stroke: var(--color-ember); stroke-width: 2" />
+                    <line x1="200" y1="186" x2="200" y2="142" style="stroke: var(--color-ember); stroke-width: 2" />
+                    <rect x="140" y="98" width="120" height="44" fill="none" style="stroke: var(--color-ember); stroke-width: 2" />
+                    <text x="200" y="125" text-anchor="middle" style="font-family: 'Handjet'; font-size: 20px; fill: var(--color-ink); letter-spacing: 2px">DECK</text>
+                    <rect x="23" y="103" width="48" height="34" fill="none" style="stroke: var(--color-ember); stroke-width: 2" />
+                    <text x="47" y="125" text-anchor="middle" style="font-family: 'Handjet'; font-size: 13px; fill: var(--color-ember)">YOU</text>
+                    <rect x="60" y="20" width="34" height="34" fill="none" style="stroke: var(--color-ember); stroke-width: 2" />
+                    <text x="77" y="42" text-anchor="middle" style="font-family: 'Handjet'; font-size: 16px; fill: var(--color-ember)">A</text>
+                    <rect x="306" y="20" width="34" height="34" fill="none" style="stroke: var(--color-ember); stroke-width: 2" />
+                    <text x="323" y="42" text-anchor="middle" style="font-family: 'Handjet'; font-size: 16px; fill: var(--color-ember)">B</text>
+                    <rect x="336" y="103" width="34" height="34" fill="none" style="stroke: var(--color-ember); stroke-width: 2" />
+                    <text x="353" y="125" text-anchor="middle" style="font-family: 'Handjet'; font-size: 16px; fill: var(--color-ember)">C</text>
+                    <rect x="183" y="186" width="34" height="34" fill="none" style="stroke: var(--color-ember); stroke-width: 2" />
+                    <text x="200" y="208" text-anchor="middle" style="font-family: 'Handjet'; font-size: 16px; fill: var(--color-ember)">D</text>
+                  </svg>
+                </div>
+              </div>
+              <figcaption>One seat at the table, then five.</figcaption>
+            </figure>
+
+            <h3>We audited six products across five categories</h3>
+            <p>Every pattern worth knowing, mapped before a single screen was designed.</p>
+
+            <div class="case__stats">
+              <div><span>6</span>Tools audited</div>
+              <div><span>5</span>Categories</div>
+              <div><span>17</span>Criteria compared</div>
+              <div><span>80%</span>Live at ship</div>
+            </div>
+
+            <p class="case__glyphkey">
+              <span class="case__glyphkey-item"><span class="g g--yes"></span>Yes</span>
+              <span class="case__glyphkey-item"><span class="g g--no"></span>No</span>
+              <span class="case__glyphkey-item"><span class="g g--part"></span>Partial</span>
+              <span class="case__glyphkey-item"><span class="g g--na"></span>Not checked</span>
+            </p>
+
+            <div class="case__audit">
+              <div class="case__audit-head">
+                <span class="case__audit-num">1</span>
+                <span class="case__audit-title">Organisation</span>
+              </div>
+              <span class="case__audit-label">The pattern</span>
+              <p>Most tools separate personal and team spaces with clear boundaries. Private areas, shared areas and team areas exist as distinct containers.</p>
+              <span class="case__audit-label">What we took</span>
+              <p>Personal content stays personal, workspace content is visible to the team, and shared items get a dedicated view.</p>
+
+              <div class="case__table-wrap">
+                <table class="case__table case__matrix">
+                  <thead><tr><th scope="col"></th><th scope="col">Drive</th><th scope="col">Dropbox</th><th scope="col">Notion</th><th scope="col">Canva</th><th scope="col">Pitch</th><th scope="col">Figma</th></tr></thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Private area</th>
+                      <td title="My Drive"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="No dedicated. Personal folders in shared teamspace"><span class="g g--no" role="img" aria-label="no"></span></td>
+                      <td title="Private"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Projects"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Private folders"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Drafts"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Team area</th>
+                      <td title="Shared drives"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Team folders. One big shared teamspace"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Teamspaces"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="No single shared area. Collaboration happens via sharing folders, browsing shared with me, or searching"><span class="g g--no" role="img" aria-label="no"></span></td>
+                      <td title="Workspace folders. Single workspace with folders visible to all members"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Teams. Can be Open, Closed, or Secret. Projects within teams"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Shared area</th>
+                      <td title="Shared with me"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Shared. Also includes outgoing shared items"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Shared. Also includes outgoing shared items"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Shared with you. All workspace sharing happens here"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Shared with me. Private folders shared by other workspace members (paid plans)"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="No dedicated shared view. Access via team membership"><span class="g g--no" role="img" aria-label="no"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Multiple teamspaces</th>
+                      <td title="Shared drives but no way to browse. Have to be invited"><span class="g g--no" role="img" aria-label="no"></span></td>
+                      <td title="You make teamspaces by making folders"><span class="g g--no" role="img" aria-label="no"></span></td>
+                      <td title="Can be open, closed, or private"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td><span class="g g--no" role="img" aria-label="no"></span></td>
+                      <td title="Single workspace per account"><span class="g g--no" role="img" aria-label="no"></span></td>
+                      <td title="Multiple teams within Organizations. Enterprise has Workspaces"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Team org threshold</th>
+                      <td title="Plan-based. Google Workspace plan unlocks shared drives"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Plan-based. Dropbox for Teams unlocks one shared space for assets. Min of 3 seats."><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Seat-based. More organic. Visible when 2+ workspace members."><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="N/A"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Seat-based. Free: 5 members, Pro: 25, Business: 200, Enterprise: unlimited"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Plan-based. Professional plan has 1 team. Organization/Enterprise have unlimited teams"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="case__audit">
+              <div class="case__audit-head">
+                <span class="case__audit-num">2</span>
+                <span class="case__audit-title">Locations and permissions</span>
+              </div>
+              <span class="case__audit-label">The pattern</span>
+              <p>The best tools tightly couple location and permissions; where a file lives determines who can access it.</p>
+              <span class="case__audit-label">What we took</span>
+              <p>Moving a file between personal and workspace changes its visibility. Folder-level permissions cascade down, keeping the mental model simple.</p>
+
+              <div class="case__table-wrap">
+                <table class="case__table case__matrix">
+                  <thead><tr><th scope="col"></th><th scope="col">Drive</th><th scope="col">Dropbox</th><th scope="col">Notion</th><th scope="col">Canva</th><th scope="col">Pitch</th><th scope="col">Figma</th></tr></thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Folder permission levels</th>
+                      <td title="4-5 levels. SHARED DRIVE: Manager, Content manager, Contributor, Commenter, Viewer. MY DRIVE: Owner, Editor, Commenter,"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="3 levels. Owner, Can edit, Can view"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="3-4 levels. Full access (paid only), Can edit, Can comment, Can view; (No access), Can edit content (only for databases)"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="2 levels. Can edit (includes sharing), Can view"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="3-5 levels. WORKSPACE: Owner, Admin, Creator (paid), Commenter (paid, free role). PRESENTATIONS: Can edit, Can comment,"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="4 levels. Owner, Admin, Can edit, Can view. Teams can be Open, Closed, or Secret"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Location-permission coupling</th>
+                      <td title="Moderately coupled. Can for example have private folders in shared drive. They appear, but click is disabled."><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Tightly coupled. Cannot have team shared asset in personal folder, for example"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Loosely coupled. Can have workspace permissions on private pages, and vice versa. Moving to private changes permissions"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="N/A. Irrelevant, since only personal folders."><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Tightly coupled. Moving between private/workspace folders changes who can access. Alert shown when moving"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Tightly coupled. Team membership determines default access. Drafts private unless explicitly shared"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Location sets default permissions</th>
+                      <td><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="case__audit">
+              <div class="case__audit-head">
+                <span class="case__audit-num">3</span>
+                <span class="case__audit-title">Nesting and inheritance</span>
+              </div>
+              <span class="case__audit-label">The pattern</span>
+              <p>Most tools support nested folders with inherited permissions.</p>
+              <span class="case__audit-label">What we took</span>
+              <p>A flat folder structure with no nesting, to keep things simple. Presentations inherit the visibility of their parent folder; workspace folders can be public or private.</p>
+
+              <div class="case__table-wrap">
+                <table class="case__table case__matrix">
+                  <thead><tr><th scope="col"></th><th scope="col">Drive</th><th scope="col">Dropbox</th><th scope="col">Notion</th><th scope="col">Canva</th><th scope="col">Pitch</th><th scope="col">Figma</th></tr></thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Nested subfolders</th>
+                      <td title="Unlimited"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Unlimited"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Unlimited"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="10 levels max"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Unlimited nesting in both private and workspace folders"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="No nested folders. Structure is Team &gt; Projects &gt; Files. Cannot create sub-projects"><span class="g g--no" role="img" aria-label="no"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Can restrict children</th>
+                      <td title="Link sharing restriction"><span class="g g--no" role="img" aria-label="no"></span></td>
+                      <td title="Personal: yes. Team: no"><span class="g g--part" role="img" aria-label="partial"></span></td>
+                      <td title="Fully flexible"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Strict inheritance"><span class="g g--no" role="img" aria-label="no"></span></td>
+                      <td title="Subfolders inherit parent folder permissions"><span class="g g--no" role="img" aria-label="no"></span></td>
+                      <td title="Can set specific permissions on projects and files within teams"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Can expand for children</th>
+                      <td><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Individual presentations can be shared beyond folder access"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="case__audit">
+              <div class="case__audit-head">
+                <span class="case__audit-num">4</span>
+                <span class="case__audit-title">Sharing and visibility</span>
+              </div>
+              <span class="case__audit-label">The pattern</span>
+              <p>The industry is split between combined and separate systems for links versus direct invites.</p>
+              <span class="case__audit-label">What we took</span>
+              <p>We kept them separate. Workspace invites for internal collaboration, external links for clients and stakeholders. Private items never surface in workspace search.</p>
+
+              <div class="case__table-wrap">
+                <table class="case__table case__matrix">
+                  <thead><tr><th scope="col"></th><th scope="col">Drive</th><th scope="col">Dropbox</th><th scope="col">Notion</th><th scope="col">Canva</th><th scope="col">Pitch</th><th scope="col">Figma</th></tr></thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Private items appear in search?</th>
+                      <td title="Opt-in. You can make it visible in search"><span class="g g--part" role="img" aria-label="partial"></span></td>
+                      <td><span class="g g--na" role="img" aria-label="not checked"></span></td>
+                      <td title="Opt-out. You can hide a shared private item from search"><span class="g g--part" role="img" aria-label="partial"></span></td>
+                      <td title="If you share a privately owned item with your workspace, it appears in their search. Cannot toggle"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Workspace members can search all workspace folders. Private folders only visible if shared"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Opt-in. On Organization plan, can toggle whether members discover files via search"><span class="g g--part" role="img" aria-label="partial"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Link vs direct invites</th>
+                      <td title="Separate systems"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Separate systems"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Single system"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Single system"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Separate systems. Workspace invites vs. external presentation links are distinct"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Combined. Can share via link or email invite"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="case__audit">
+              <div class="case__audit-head">
+                <span class="case__audit-num">5</span>
+                <span class="case__audit-title">Guest and external access</span>
+              </div>
+              <span class="case__audit-label">The pattern</span>
+              <p>Most tools support guest access at the file and folder level, with domain restrictions.</p>
+              <span class="case__audit-label">What we took</span>
+              <p>Guests are scoped to individual presentations only; they collaborate on specific decks without gaining workspace visibility.</p>
+
+              <div class="case__table-wrap">
+                <table class="case__table case__matrix">
+                  <thead><tr><th scope="col"></th><th scope="col">Drive</th><th scope="col">Dropbox</th><th scope="col">Notion</th><th scope="col">Canva</th><th scope="col">Pitch</th><th scope="col">Figma</th></tr></thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Guest access: files &amp; folders</th>
+                      <td title="Files and folders"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Files and folders"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Pages and subpages"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Files and folders"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Only presentations. Guests can only access individual presentations"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Files, projects, and teams. Guests limited to invited resources"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Domain restrictions</th>
+                      <td title="Can restrict sharing to specific domains. Can disable external sharing entirely."><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Team admins can restrict sharing to approved domains"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Can restrict guests to specific domains or disable entirely"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Can disable public links, but no domain allowlist"><span class="g g--part" role="img" aria-label="partial"></span></td>
+                      <td title="Can set approved email domain for auto-joining workspace, but no guest restrictions"><span class="g g--part" role="img" aria-label="partial"></span></td>
+                      <td title="Organization can register domains. Guests are users without org domain. Can disable public sharing"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Password-protect links?</th>
+                      <td><span class="g g--no" role="img" aria-label="no"></span></td>
+                      <td title="Both files and folders"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td><span class="g g--no" role="img" aria-label="no"></span></td>
+                      <td><span class="g g--no" role="img" aria-label="no"></span></td>
+                      <td title="Passcode on advanced links (paid plans Pro/Business/Enterprise)"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Files and prototypes on paid plans. Not for team members/invited users"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Link expiration?</th>
+                      <td title="Can set (files + folders)"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td title="Can set (files + folders)"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                      <td><span class="g g--no" role="img" aria-label="no"></span></td>
+                      <td><span class="g g--no" role="img" aria-label="no"></span></td>
+                      <td><span class="g g--no" role="img" aria-label="no"></span></td>
+                      <td title="Enterprise plan: 1 hour to 1 year expiration on public links"><span class="g g--yes" role="img" aria-label="yes"></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <h3>The new file architecture</h3>
+            <p>Everything splits into two spaces: personal and team. Personal space is a simple filtered view of your work; no folders, no hierarchy. Team space is structured; every file sits in a folder, public or private. Permissions follow location. New and uncategorised files rest in drafts until they move to a project.</p>
+
+            <figure class="case__viz">
+              <div class="arch">
+                <div class="arch__head"><span class="arch__title">Personal space</span><span class="arch__tag">A filtered view. No folders.</span></div>
+                <div class="arch__body">
+                  <div class="arch__files">
+                    <span class="arch__file"><span class="g g--yes"></span>Q3 review<span class="arch__badge arch__badge--ember">Private</span></span>
+                    <span class="arch__file"><span class="g g--yes"></span>Pitch v2<span class="arch__badge arch__badge--ember">Private</span></span>
+                    <span class="arch__file"><span class="g g--yes"></span>Offsite<span class="arch__badge arch__badge--ember">Private</span></span>
+                    <span class="arch__file"><span class="g g--yes"></span>Intro deck<span class="arch__badge arch__badge--ember">Private</span></span>
+                  </div>
+                  <div class="arch__sub">
+                    <span class="arch__sub-label">Shared with me</span>
+                    <div class="arch__files">
+                      <span class="arch__file arch__file--dim"><span class="g g--na"></span>Roadmap<span class="arch__badge">From Ana</span></span>
+                      <span class="arch__file arch__file--dim"><span class="g g--na"></span>Sales kit<span class="arch__badge">From Dev</span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="arch">
+                <div class="arch__head"><span class="arch__title">Team space</span><span class="arch__tag">Every file lives in a folder. Permissions follow location.</span></div>
+                <div class="arch__body">
+                  <div class="arch__folders">
+                    <div class="arch__folder">
+                      <div class="arch__folder-name">Marketing<span class="arch__badge">Public</span></div>
+                      <span class="arch__file arch__file--mini"><span class="g g--yes"></span>Launch plan</span>
+                      <span class="arch__file arch__file--mini"><span class="g g--yes"></span>Brand deck</span>
+                    </div>
+                    <div class="arch__folder">
+                      <div class="arch__folder-name">Sales<span class="arch__badge">Public</span></div>
+                      <span class="arch__file arch__file--mini"><span class="g g--yes"></span>Pipeline</span>
+                      <span class="arch__file arch__file--mini"><span class="g g--yes"></span>McKinsey bid</span>
+                    </div>
+                    <div class="arch__folder arch__folder--private">
+                      <div class="arch__folder-name">Executive<span class="arch__badge arch__badge--ember">Private</span></div>
+                      <span class="arch__file arch__file--mini"><span class="g g--yes"></span>Board pack</span>
+                      <span class="arch__file arch__file--mini"><span class="g g--yes"></span>Comp review</span>
+                    </div>
+                  </div>
+                  <div class="arch__drafts"><span class="arch__drafts-label">Drafts</span> <span class="arch__drafts-copy">uncategorised files wait here until they move to a project</span></div>
+                </div>
+              </div>
+              <figcaption>The new architecture: personal stays flat, team stays foldered.</figcaption>
+            </figure>
+
+            <ul class="case__rules">
+              <li><span class="case__rules-num">1</span><span class="case__rules-label">All personal content is private by default</span></li>
+              <li><span class="case__rules-num">2</span><span class="case__rules-label">Personal space has no folder structure</span></li>
+              <li><span class="case__rules-num">3</span><span class="case__rules-label">Content shared with you lives in Shared with me</span></li>
+              <li><span class="case__rules-num">4</span><span class="case__rules-label">No nested folders anywhere in the system</span></li>
+              <li><span class="case__rules-num">5</span><span class="case__rules-label">Team folders default to public visibility</span></li>
+              <li><span class="case__rules-num">6</span><span class="case__rules-label">File permissions always inherit from the parent folder</span></li>
+            </ul>
+
+            <h3>The dashboard</h3>
+            <p>Everything starts here. Create, find, organise and collaborate from one screen.</p>
+
+            <ul class="case__notes">
+              <li>Plan visibility at a glance</li>
+              <li>Credits always visible so users know where they stand</li>
+              <li>Profile and workspace settings separated for clarity</li>
+              <li>Global search always within reach</li>
+              <li>Entry points that guide you straight into the create flow</li>
+              <li>Relevant features surfaced where you need them, not buried in menus</li>
+              <li>Visual cues that split public folders from private ones</li>
+              <li>Larger thumbnails so you spot your work without reading titles</li>
+              <li>Shared with me as a dedicated space</li>
+              <li>Metadata on every file: where it lives and who made it</li>
+            </ul>
+
+            <figure class="case__figure case__figure--full">
+              <img src="assets/cs-pai/dashboard-explorations.jpg" alt="Grid of early dashboard layout explorations" loading="lazy" />
+              <figcaption>A pile of layouts was vibe coded and tested before the final dashboard won.</figcaption>
+            </figure>
+
+            <h3>Rethinking invites</h3>
+            <p>Sharing isn't one action; it's three. Workspace level, project level, file level. Each behaves differently depending on plan, role, and whether you're an admin. A free user inviting a teammate sees a different flow than a team admin with open seats. A file in a public project follows different rules than a file in drafts. We mapped every combination across plan types, roles and file locations, then designed flows that absorb the complexity instead of exposing it.</p>
+
+            <figure class="case__viz">
+              <div class="cascade">
+                <p class="cascade__banner">Permissions inherit downwards</p>
+                <div class="cascade__tier"><span class="cascade__level">01 &middot; Workspace</span><p>An invite needs a seat. An admin approves. Full access follows.</p></div>
+                <div class="cascade__arrow" aria-hidden="true"></div>
+                <div class="cascade__tier"><span class="cascade__level">02 &middot; Project</span><p>Public projects open to every member. Private projects need an explicit invite.</p></div>
+                <div class="cascade__arrow" aria-hidden="true"></div>
+                <div class="cascade__tier"><span class="cascade__level">03 &middot; File</span><p>Share as a member (needs a seat) or as a guest (no seat, this deck only). Rules adapt to where the file lives.</p></div>
+              </div>
+              <figcaption>Permissions inherit downwards: workspace into projects, projects into files.</figcaption>
+            </figure>
+
+            <ul class="case__rules">
+              <li><span class="case__rules-num">1</span><span class="case__rules-label">Workspace invites require available seats</span></li>
+              <li><span class="case__rules-num">2</span><span class="case__rules-label">Non-admins can invite; an admin approves</span></li>
+              <li><span class="case__rules-num">3</span><span class="case__rules-label">Public projects open to every workspace member</span></li>
+              <li><span class="case__rules-num">4</span><span class="case__rules-label">Private projects require explicit invites</span></li>
+              <li><span class="case__rules-num">5</span><span class="case__rules-label">File sharing adapts to where the file lives</span></li>
+              <li><span class="case__rules-num">6</span><span class="case__rules-label">Guests get instant access; full seats need admin approval</span></li>
+            </ul>
+
+            <figure class="case__figure case__figure--full">
+              <img src="assets/cs-pai/collab-browser.jpg" alt="The invite and sharing controls shown in a browser window" loading="lazy" />
+              <figcaption>Invite, share, control. All from one place.</figcaption>
+            </figure>
+
+            <div class="case__duo">
+              <figure class="case__figure case__figure--full">
+                <img src="assets/cs-pai/share-modal.jpg" alt="The share modal for inviting a member or guest with a permission level" loading="lazy" />
+                <figcaption>Member or guest, with the right permission level, set before the invite is sent.</figcaption>
+              </figure>
+              <figure class="case__figure case__figure--full">
+                <img src="assets/cs-pai/seats-modal.jpg" alt="The upgrade prompt shown when a workspace has run out of seats" loading="lazy" />
+                <figcaption>Out of seats? The upgrade happens in place, not in a settings maze.</figcaption>
+              </figure>
+            </div>
+
+            <h3>Shipped, and building forward</h3>
+            <p>The redesign touched every layer of the product. Architecture, dashboard, invite flows, permissions, file management; all rebuilt from the ground up. It shipped on 24 February 2026 with about 80 percent of the redesign live and the rest rolling out. Too early to talk numbers, but the bottleneck that held everything back is gone. New features are already being built on top of what didn't exist a few months ago.</p>
+
+            <figure class="case__figure case__figure--full">
+              <img src="assets/cs-pai/whats-next-refresh.jpg" alt="Concept for automatically refreshing a deck when its underlying data changes" loading="lazy" />
+              <figcaption>Next up: refresh a deck automatically when the data behind it changes.</figcaption>
+            </figure>
+
+            <p>Right now my time goes into better slide generation. That means understanding the create flow at a deeper level: how slides are structured, what objects and nodes exist, how content gets generated. The model builds an outline first, then generates slides from it. I curate input datasets and fine tune each stage so the output is better by default. The bigger goal: slides that aren't bound by templates at all. Freeform, generated from scratch, every time.</p>
+
+            <p>Thanks for reading.</p>
+          </div>
+
+          <a class="case__back" href="#work" data-nav="work">&larr; Back to work</a>
         </div>
       </section>
 
