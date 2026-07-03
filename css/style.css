@@ -95,6 +95,12 @@ main > * {
 .frame__memory {
   grid-column: 2;
   text-align: center;
+  pointer-events: auto;
+  transition: color 0.2s;
+}
+
+.frame__memory:hover {
+  color: var(--color-ember);
 }
 
 .frame p {
@@ -1562,6 +1568,25 @@ main > * {
 
 .netbox svg {
   display: block;
+}
+
+/* ---------- franky ---------- */
+
+.franky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 2px solid var(--color-ink);
+  box-shadow: 8px 8px 0 var(--color-ember-deep);
+  filter: saturate(0.85) contrast(1.05);
+  z-index: 800;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  will-change: transform;
 }
 
 /* ---------- responsive ---------- */
