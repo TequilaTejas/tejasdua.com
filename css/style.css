@@ -189,13 +189,23 @@ main > * {
 .cover {
   z-index: 300;
   display: grid;
-  grid-template-columns: repeat(20, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+  /* Definite percentage tracks rather than `1fr`: with `1fr` (which
+     always includes an automatic minimum content-size contribution),
+     aspect-ratio tiles here would feed back into the row/column
+     track-sizing pass whenever a tile carried any vertical offset,
+     ballooning both row heights and, cascading through the sizing
+     algorithm, unrelated column widths. Percentage tracks resolve
+     directly from the (definite) container size with no content-based
+     negotiation, so they stay exactly 12.5%/25% regardless of any
+     per-item offset. */
+  grid-template-columns: repeat(8, 12.5%);
+  grid-template-rows: repeat(4, 25%);
   overflow: hidden;
   pointer-events: none;
 }
 
 .cover__item {
+  position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
   will-change: transform, opacity;
@@ -206,24 +216,59 @@ main > * {
   height: 100%;
   background-size: cover;
   background-position: center;
-  filter: saturate(0.85) contrast(1.05);
+  filter: brightness(0.72) contrast(1.3) grayscale(1) sepia(0.75) saturate(3.4) hue-rotate(-28deg) brightness(0.72) contrast(1.3);
   will-change: transform;
 }
 
-.cover__item:nth-child(1)  { grid-area: 1 / 3; }
-.cover__item:nth-child(2)  { grid-area: 2 / 7; }
-.cover__item:nth-child(3)  { grid-area: 1 / 12; }
-.cover__item:nth-child(4)  { grid-area: 3 / 16; }
-.cover__item:nth-child(5)  { grid-area: 2 / 19; }
-.cover__item:nth-child(6)  { grid-area: 4 / 2; }
-.cover__item:nth-child(7)  { grid-area: 5 / 6; }
-.cover__item:nth-child(8)  { grid-area: 3 / 8; }
-.cover__item:nth-child(9)  { grid-area: 6 / 14; }
-.cover__item:nth-child(10) { grid-area: 5 / 18; }
-.cover__item:nth-child(11) { grid-area: 7 / 4; }
-.cover__item:nth-child(12) { grid-area: 8 / 8; }
-.cover__item:nth-child(13) { grid-area: 8 / 13; }
-.cover__item:nth-child(14) { grid-area: 9 / 17; }
+/* Wheat/poppy-field tile reads golden-lime under the standard duotone
+   chain (its source highlights are too bright/warm-neutral to fully
+   fold into the ember family). Redefine its filter chain with deeper
+   pre-darkening and a stronger red-ward hue push so it lands in the
+   same ember register as the rest of the grid. */
+.cover__item:nth-child(10) .cover__image {
+  filter: brightness(0.52) contrast(1.35) grayscale(1) sepia(0.75) saturate(3.4) hue-rotate(-34deg) brightness(0.58) contrast(1.35) saturate(1.15);
+}
+
+/* Large collage, ~2.5x the original tile scale (8x4 grid vs the old
+   20x10). Tiles cluster along the left/right edges, leaving the middle
+   35% (width) x 40% (height) clear for the hero title and sub-line at
+   both 1440x900 and 1280x800 (same aspect ratio, so the fractional grid
+   lines up). Several edge tiles get a negative/positive margin-left push
+   so they bleed past the viewport edge, cropped by .cover's overflow.
+
+   Each tile also gets its own vertical offset so same-row tiles no
+   longer share a top edge (organic scatter, -6vh to +8vh). This uses
+   `top` on a `position: relative` item rather than margin-top or
+   transform: margin-top on aspect-ratio items inside 1fr grid rows
+   feeds back into the row/column track-sizing algorithm (rows and
+   even column widths balloon), and `transform` gets clobbered because
+   menu.js runs `gsap.set(coverItems, { x: 0, y: 0, ... })` on init,
+   which writes an inline transform that permanently wins over any
+   transform declared here. Relative-position `top` is a paint-time
+   offset like transform (doesn't touch track sizing) but isn't a
+   property GSAP ever touches, so it survives the scatter timeline's
+   open/close cycles untouched. Tiles #2/#3 (row 1, columns 3 & 6) sit
+   under the hero title's horizontal span, so their offsets stay
+   small/negative to keep clear of the title's vertical band. Tiles
+   #9/#12/#13 graze or sit inside the bottom-center footer-clearance
+   band (middle 55% width x bottom 12% height), so each gets an extra
+   sideways nudge (margin-left) clear of it, on top of its vertical
+   offset, so the "Designing in memory of Franky" line never has a
+   tile under it. */
+.cover__item:nth-child(1)  { grid-area: 1 / 1; margin-left: -4vw; top: 4.5vh; }
+.cover__item:nth-child(2)  { grid-area: 1 / 3; top: -3.5vh; }
+.cover__item:nth-child(3)  { grid-area: 1 / 6; top: -2.5vh; }
+.cover__item:nth-child(4)  { grid-area: 1 / 8; margin-left: 4vw; top: 3vh; }
+.cover__item:nth-child(5)  { grid-area: 2 / 2; top: -5vh; }
+.cover__item:nth-child(6)  { grid-area: 2 / 1; margin-left: -3.5vw; top: 6.5vh; }
+.cover__item:nth-child(7)  { grid-area: 2 / 8; margin-left: 3.5vw; top: -1.5vh; }
+.cover__item:nth-child(8)  { grid-area: 3 / 2; top: -4vh; }
+.cover__item:nth-child(9)  { grid-area: 3 / 7; margin-left: 3.5vw; top: -3.5vh; }
+.cover__item:nth-child(10) { grid-area: 3 / 1; top: 7.5vh; }
+.cover__item:nth-child(11) { grid-area: 4 / 1; margin-left: -4.5vw; top: -5.5vh; }
+.cover__item:nth-child(12) { grid-area: 4 / 2; margin-left: -3.5vw; top: 4vh; }
+.cover__item:nth-child(13) { grid-area: 4 / 7; margin-left: 3.5vw; top: -3vh; }
+.cover__item:nth-child(14) { grid-area: 4 / 8; margin-left: 4vw; top: 5.5vh; }
 
 /* ---------- hero title ---------- */
 
@@ -242,6 +287,17 @@ main > * {
   user-select: none;
   pointer-events: none;
   text-shadow: 0.04em 0.04em 0 var(--color-ember-deep);
+}
+
+.title__sub {
+  font-family: 'Handjet', sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 1.6vw, 1.3rem);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--color-ember);
+  margin-bottom: 0.8em;
+  text-shadow: none;
 }
 
 /* ---------- pages ---------- */
