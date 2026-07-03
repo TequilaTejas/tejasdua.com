@@ -208,8 +208,9 @@
       <section class="page page--case" data-page="cs-pai" aria-hidden="true">
         <div class="page__inner page__inner--case">
           <a class="case__back" href="#work" data-nav="work">&larr; Back to work</a>
-          <p class="page__kicker" data-reveal>Case study · Presentations.ai</p>
+          <p class="page__kicker" data-reveal>Case study · Redesigning an AI-first tool, from scratch</p>
           <h2 class="case__title" data-reveal>Redesigning<br />Presentations.ai</h2>
+          <p class="case__strap" data-reveal>The world's best AI presentation maker!</p>
 
           <ul class="case__facts" data-reveal>
             <li><b>Role</b> Product design</li>
@@ -225,7 +226,7 @@
 
             <h3>The gap we exist to close</h3>
             <p>Presentations are the language of business, yet the software used to make them hasn't fundamentally changed since the 1990s. PowerPoint and Google Slides digitised paper presentations. They never transformed how we create them.</p>
-            <p>Presentations.ai exists to close the gap between a raw idea and a finished, professional deck. Not eventually. Not after hours of manual work. Right now.</p>
+            <p>Presentations.ai exists to close the gap between a raw idea and a finished, professional deck. Not eventually. Not after hours of manual work. Right now. Instantly.</p>
 
             <h3>The product was holding itself back</h3>
             <p>There was no shortage of ideas for where the product could go. The existing architecture made most of them impossible to ship. New markets, core features, industry standards; none of it could happen on top of what existed. So we set out to recreate the foundation: scalable, backend driven, and a significantly better experience to use.</p>
@@ -242,7 +243,7 @@
             <h3>Three fronts, one rebuild</h3>
             <div class="case__stats">
               <div><span>Architecture</span>File organisation, collaboration, invite flows and granular access control. Enterprise ready.</div>
-              <div><span>Experience</span>Core flows rethought, navigation simplified, key actions surfaced.</div>
+              <div><span>Experience</span>Core flows rethought, navigation simplified, key actions surfaced. Brought up to the standard users expect from modern tools.</div>
               <div><span>Look and feel</span>A refreshed visual language and a component system that reflects the intelligence behind the product.</div>
             </div>
 
@@ -273,10 +274,10 @@
                 </thead>
                 <tbody>
                   <tr><td>File-level sharing</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
-                  <tr><td>Role-based permissions</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+                  <tr><td>Role-based permissions (view, edit, admin)</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
                   <tr><td>Invite via link or email</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
                   <tr><td>Folder-level access control</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
-                  <tr><td>Guest access</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+                  <tr><td>Guest access (external collaborators)</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
                 </tbody>
               </table>
             </div>
@@ -348,7 +349,7 @@
                   </div>
                 </div>
               </div>
-              <figcaption>From one endless pile to a place for everything.</figcaption>
+              <figcaption>Status quo: one pile, no structure, no way to find what you need. The target: organised, labelled, built to scale.</figcaption>
             </figure>
 
             <h3>Built for solo use; work isn't</h3>
@@ -411,7 +412,7 @@
                   </svg>
                 </div>
               </div>
-              <figcaption>One seat at the table, then five.</figcaption>
+              <figcaption>Status quo: one person, one document, everyone else locked out. The target: the same work, open to everyone who needs it.</figcaption>
             </figure>
 
             <h3>We audited six products across five categories</h3>
@@ -740,7 +741,7 @@
             <p>Everything starts here. Create, find, organise and collaborate from one screen.</p>
 
             <ul class="case__notes">
-              <li>Plan visibility at a glance</li>
+              <li>Plan visibility at a glance so users always know what they're on</li>
               <li>Credits always visible so users know where they stand</li>
               <li>Profile and workspace settings separated for clarity</li>
               <li>Global search always within reach</li>
@@ -758,7 +759,7 @@
             </figure>
 
             <h3>Rethinking invites</h3>
-            <p>Sharing isn't one action; it's three. Workspace level, project level, file level. Each behaves differently depending on plan, role, and whether you're an admin. A free user inviting a teammate sees a different flow than a team admin with open seats. A file in a public project follows different rules than a file in drafts. We mapped every combination across plan types, roles and file locations, then designed flows that absorb the complexity instead of exposing it.</p>
+            <p>Sharing isn't one action; it's three. Workspace level, project level, file level. Each behaves differently depending on plan, role, and whether you're an admin. A free user inviting a teammate sees a different flow than a team admin with open seats. A file in a public project follows different rules than a file in drafts. We mapped every combination across four plan types, multiple permission roles and file locations, then designed flows that absorb the complexity instead of exposing it. For the complete invite logic across plans, roles and edge cases, read the <a href="https://pine-capricorn-bc0.notion.site/Share-Flow-User-Journeys-31796985781e80e08163ff74f7359cde?source=copy_link" target="_blank" rel="noopener">full share-flow documentation</a>.</p>
 
             <figure class="case__viz">
               <div class="cascade">
@@ -797,13 +798,23 @@
               </figure>
             </div>
 
-            <h3>Shipped, and building forward</h3>
+            <p>Link sharing got the same treatment:</p>
+            <ul class="case__notes">
+              <li>Copy a link with permissions baked in; the link changes with the access level</li>
+              <li>Toggle permission and access for any guest or member</li>
+              <li>Control who can access via link, and what they can do, from one settings view</li>
+            </ul>
+
+            <h3>The redesign cleared the way. Now we build forward</h3>
             <p>The redesign touched every layer of the product. Architecture, dashboard, invite flows, permissions, file management; all rebuilt from the ground up. It shipped on 24 February 2026 with about 80 percent of the redesign live and the rest rolling out. Too early to talk numbers, but the bottleneck that held everything back is gone. New features are already being built on top of what didn't exist a few months ago.</p>
 
+            <h3>Helping Presentations.ai build better presentations</h3>
             <figure class="case__figure case__figure--full">
               <img src="assets/cs-pai/whats-next-refresh.jpg" alt="Concept for automatically refreshing a deck when its underlying data changes" loading="lazy" />
               <figcaption>Next up: refresh a deck automatically when the data behind it changes.</figcaption>
             </figure>
+
+            <p>Next up: refresh. Paste or upload your data and let the AI handle the rest, then review what changed on every slide. Keep what works, adjust what doesn't.</p>
 
             <p>Right now my time goes into better slide generation. That means understanding the create flow at a deeper level: how slides are structured, what objects and nodes exist, how content gets generated. The model builds an outline first, then generates slides from it. I curate input datasets and fine tune each stage so the output is better by default. The bigger goal: slides that aren't bound by templates at all. Freeform, generated from scratch, every time.</p>
 

@@ -839,6 +839,16 @@ main > * {
   text-shadow: 0.04em 0.04em 0 var(--color-ember-deep);
 }
 
+.case__strap {
+  margin: 0 0 1.6rem;
+  font-family: 'Handjet', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 1.05rem;
+  color: var(--color-ink-dim);
+}
+
 .case__facts {
   list-style: none;
   margin: 0 0 2.5rem;
