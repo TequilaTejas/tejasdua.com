@@ -207,6 +207,7 @@ main > * {
   background-size: cover;
   background-position: center;
   filter: saturate(0.85) contrast(1.05);
+  will-change: transform;
 }
 
 .cover__item:nth-child(1)  { grid-area: 1 / 3; }
