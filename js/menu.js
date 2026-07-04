@@ -27,6 +27,7 @@ const CLIP_DELAY = 0.3;
 const MAX_STAGGER = 0.3;
 const FULL_CLOSE_EASE = 'elastic.out(0.35)';
 const INTERRUPT_TIMESCALE = 2.5;
+const SCROLL_GESTURE_COOLDOWN_MS = 1000;
 
 const CLIP_CLOSED = 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)';
 const CLIP_OPEN = 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)';
@@ -37,6 +38,7 @@ let view = 'home';
 let isOpen = false;
 let timeline = null;
 let navigating = false;
+let scrollGestureCooldownUntil = 0;
 
 const viewportCenter = () => ({
   x: window.innerWidth / 2,
@@ -211,6 +213,11 @@ const toggleMenu = () => {
   isOpen = !isOpen;
   syncA11y();
 
+  // Any toggle, whichever triggered it (button, keyboard, scroll gesture),
+  // freezes the scroll-gesture accumulator for a beat so momentum scroll
+  // right after the transition can't immediately re-toggle the menu.
+  scrollGestureCooldownUntil = Date.now() + SCROLL_GESTURE_COOLDOWN_MS;
+
   if (isOpen) {
     timeline.timeScale(1).play();
     return;
@@ -293,6 +300,86 @@ const init = () => {
       }
     }, 200);
   });
+
+  initScrollGesture();
+};
+
+// Scroll/swipe gesture on the home view: scrolling down opens the menu,
+// scrolling up closes it. Wheel deltas (and touch-drag deltas) accumulate
+// until they cross a threshold, with a short idle/direction-flip reset and
+// a post-trigger cooldown so momentum scroll can't immediately re-toggle.
+const initScrollGesture = () => {
+  const RESET_IDLE_MS = 400;
+  const TRIGGER_THRESHOLD = 120;
+
+  let accumulated = 0;
+  let lastEventTime = 0;
+  let touchStartY = null;
+
+  const isCoolingDown = () => Date.now() < scrollGestureCooldownUntil;
+
+  const canOpen = () =>
+    view === 'home' &&
+    !isOpen &&
+    !navigating &&
+    !document.body.classList.contains('loading') &&
+    !document.body.classList.contains('gated');
+
+  const canClose = () => view === 'home' && isOpen && !navigating;
+
+  const handleDelta = (deltaY) => {
+    if (isCoolingDown()) {
+      accumulated = 0;
+      return;
+    }
+
+    const now = Date.now();
+    const idle = now - lastEventTime > RESET_IDLE_MS;
+    const flipped = accumulated !== 0 && Math.sign(accumulated) !== Math.sign(deltaY);
+    if (idle || flipped) accumulated = 0;
+    lastEventTime = now;
+
+    accumulated += deltaY;
+
+    if (accumulated >= TRIGGER_THRESHOLD) {
+      accumulated = 0;
+      if (canOpen()) toggleMenu();
+      return;
+    }
+
+    if (accumulated <= -TRIGGER_THRESHOLD) {
+      accumulated = 0;
+      if (canClose()) toggleMenu();
+    }
+  };
+
+  window.addEventListener(
+    'wheel',
+    (event) => {
+      handleDelta(event.deltaY);
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    'touchstart',
+    (event) => {
+      touchStartY = event.touches[0] ? event.touches[0].clientY : null;
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    'touchmove',
+    (event) => {
+      if (touchStartY === null || !event.touches[0]) return;
+      const currentY = event.touches[0].clientY;
+      const deltaY = touchStartY - currentY; // finger moving up => positive (scroll-down intent)
+      touchStartY = currentY;
+      handleDelta(deltaY);
+    },
+    { passive: true }
+  );
 };
 
 withTimeout(preloadCoverImages(), MAX_PRELOAD).then(() => {
