@@ -230,45 +230,70 @@ main > * {
 }
 
 /* Large collage, ~2.5x the original tile scale (8x4 grid vs the old
-   20x10). Tiles cluster along the left/right edges, leaving the middle
-   35% (width) x 40% (height) clear for the hero title and sub-line at
-   both 1440x900 and 1280x800 (same aspect ratio, so the fractional grid
-   lines up). Several edge tiles get a negative/positive margin-left push
-   so they bleed past the viewport edge, cropped by .cover's overflow.
+   20x10), recomposed onto a balancing diagonal after the previous
+   scatter piled up in the bottom-left and skewed left-heavy. Two 2x2
+   anchor tiles (#3 bottom-left, #12 top-right) carry most of the visual
+   weight on opposite corners; nine single-cell tiles fill the rest.
+   Three tiles whose source photos read weakest/most washed under the
+   ember duotone (#10, #11, #14) are hidden with `display: none` rather
+   than placed - menu.js's scatter/reset tweens no-op harmlessly on
+   display:none elements (zero-size rect, invisible either way).
 
-   Each tile also gets its own vertical offset so same-row tiles no
-   longer share a top edge (organic scatter, -6vh to +8vh). This uses
-   `top` on a `position: relative` item rather than margin-top or
-   transform: margin-top on aspect-ratio items inside 1fr grid rows
-   feeds back into the row/column track-sizing algorithm (rows and
-   even column widths balloon), and `transform` gets clobbered because
-   menu.js runs `gsap.set(coverItems, { x: 0, y: 0, ... })` on init,
-   which writes an inline transform that permanently wins over any
-   transform declared here. Relative-position `top` is a paint-time
-   offset like transform (doesn't touch track sizing) but isn't a
-   property GSAP ever touches, so it survives the scatter timeline's
-   open/close cycles untouched. Tiles #2/#3 (row 1, columns 3 & 6) sit
-   under the hero title's horizontal span, so their offsets stay
-   small/negative to keep clear of the title's vertical band. Tiles
-   #9/#12/#13 graze or sit inside the bottom-center footer-clearance
-   band (middle 55% width x bottom 12% height), so each gets an extra
-   sideways nudge (margin-left) clear of it, on top of its vertical
-   offset, so the "Designing in memory of Franky" line never has a
-   tile under it. */
-.cover__item:nth-child(1)  { grid-area: 1 / 1; margin-left: -4vw; top: 4.5vh; }
-.cover__item:nth-child(2)  { grid-area: 1 / 3; top: -3.5vh; }
-.cover__item:nth-child(3)  { grid-area: 1 / 6; top: -2.5vh; }
-.cover__item:nth-child(4)  { grid-area: 1 / 8; margin-left: 4vw; top: 3vh; }
-.cover__item:nth-child(5)  { grid-area: 2 / 2; top: -5vh; }
-.cover__item:nth-child(6)  { grid-area: 2 / 1; margin-left: -3.5vw; top: 6.5vh; }
-.cover__item:nth-child(7)  { grid-area: 2 / 8; margin-left: 3.5vw; top: -1.5vh; }
-.cover__item:nth-child(8)  { grid-area: 3 / 2; top: -4vh; }
-.cover__item:nth-child(9)  { grid-area: 3 / 7; margin-left: 3.5vw; top: -3.5vh; }
-.cover__item:nth-child(10) { grid-area: 3 / 1; top: 7.5vh; }
-.cover__item:nth-child(11) { grid-area: 4 / 1; margin-left: -4.5vw; top: -5.5vh; }
-.cover__item:nth-child(12) { grid-area: 4 / 2; margin-left: -3.5vw; top: 4vh; }
-.cover__item:nth-child(13) { grid-area: 4 / 7; margin-left: 3.5vw; top: -3vh; }
-.cover__item:nth-child(14) { grid-area: 4 / 8; margin-left: 4vw; top: 5.5vh; }
+   Each visible tile still gets its own vertical offset so same-row
+   tiles don't share a top edge (organic scatter). This uses `top` on a
+   `position: relative` item rather than margin-top or transform:
+   margin-top on aspect-ratio items inside 1fr grid rows feeds back into
+   the row/column track-sizing algorithm (rows and even column widths
+   balloon), and `transform` gets clobbered because menu.js runs
+   `gsap.set(coverItems, { x: 0, y: 0, ... })` on init, which writes an
+   inline transform that permanently wins over any transform declared
+   here. Relative-position `top` is a paint-time offset like transform
+   (doesn't touch track sizing) but isn't a property GSAP ever touches,
+   so it survives the scatter timeline's open/close cycles untouched.
+
+   Column tracks have zero gap, so two single-cell tiles in
+   directly-adjacent columns of the same row share a border with 0px of
+   horizontal space between them by default; a `top` offset within the
+   organic scatter range (a handful of vh) is far smaller than a tile's
+   own height and can't pull their vertical spans apart enough to clear
+   that shared border on its own. Row 1's four adjacent tiles (#2/#4/#5/#6,
+   cols 3-6) instead get a graduated `margin-left` push - increasingly
+   negative moving left, increasingly positive moving right - opening a
+   real horizontal gap at each shared border while leaving #6 enough room
+   before the top-right anchor's own bleed margin.
+
+   The hero title's box covers roughly the middle third of the width and
+   a wide central vertical band (well past both the row-2 and row-3
+   bands), so any single-cell tile in row 2 or row 3 whose column falls
+   anywhere near that horizontal band can't be pushed clear of the title
+   vertically without an offset far outside the organic range - those
+   rows are therefore only used at the far edges (col 8, clear of the
+   title, and clear of the footer). Row 1 clears the title by staying
+   pushed up; row 4 clears it by staying pushed down. Row 4's cols 4-5
+   sit under the footer band instead, so its tiles use cols 3/6/7
+   (footer- and title-clear once pushed down), with #13 (col 7) pushed
+   down further still to clear col 8's row-3 tile above it as well as
+   nudged right (margin-left) to clear col 6's tile beside it.
+
+   Tiles #1/#2/#4/#5/#6 (row 1) keep top offsets staggered by >= 3vh
+   between horizontal neighbours so the top edge never lines up. The two
+   anchor tiles keep clear of both the hero title's central band and the
+   bottom-center "Designing in memory of Franky" footer line via their
+   offsets/margins. */
+.cover__item:nth-child(1)  { grid-area: 1 / 1; top: -9vh; }
+.cover__item:nth-child(2)  { grid-area: 1 / 3; margin-left: -4.5vw; top: -5vh; }
+.cover__item:nth-child(3)  { grid-area: 3 / 1 / 5 / 3; margin-left: -3.5vw; top: 3vh; }
+.cover__item:nth-child(4)  { grid-area: 1 / 4; margin-left: -2.5vw; top: -8.5vh; }
+.cover__item:nth-child(5)  { grid-area: 1 / 5; margin-left: -0.5vw; top: -5vh; }
+.cover__item:nth-child(6)  { grid-area: 1 / 6; margin-left: 1.5vw; top: -8.5vh; }
+.cover__item:nth-child(7)  { grid-area: 3 / 8; top: 2vh; }
+.cover__item:nth-child(8)  { grid-area: 4 / 3; top: 4vh; }
+.cover__item:nth-child(9)  { grid-area: 4 / 6; top: 4vh; }
+.cover__item:nth-child(10) { display: none; }
+.cover__item:nth-child(11) { display: none; }
+.cover__item:nth-child(12) { grid-area: 1 / 7 / 3 / 9; margin-left: 3.5vw; top: -4vh; }
+.cover__item:nth-child(13) { grid-area: 4 / 7; margin-left: 2.5vw; top: 5.5vh; }
+.cover__item:nth-child(14) { display: none; }
 
 /* ---------- hero title ---------- */
 
