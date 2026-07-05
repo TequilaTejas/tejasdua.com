@@ -907,13 +907,10 @@ main > * {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  /* Same documentary desaturated-warm base as every other photo, plus a
-     mild sepia push: this is the one full-color (green/blue) photo on
-     the site, so without it it reads as a cold outlier against the
-     ember-toned home cover. Kept mild (not the cover tiles' full
-     duotone) since a portrait needs to stay recognizable once the
-     stand-in is swapped. */
-  filter: saturate(0.85) contrast(1.05) sepia(0.4);
+  /* Standard site filter only: the real portrait is shot in warm
+     lamplight and already sits in the ember palette, so the old sepia
+     push (added for the cold blue-green stand-in) would overcook it. */
+  filter: saturate(0.85) contrast(1.05);
   border: 2px solid var(--color-ink);
   box-shadow: 8px 8px 0 var(--color-ember-deep);
 }
