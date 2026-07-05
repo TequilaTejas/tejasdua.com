@@ -1064,6 +1064,32 @@ span.writlist__link:hover .writlist__name {
   box-shadow: 6px 6px 0 var(--color-ember-deep);
 }
 
+/* A pillar that links out gets the full interactive treatment: lift into
+   live ember on hover, title warms, screen caption invites the click. */
+a.pillar {
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s;
+}
+
+a.pillar:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--color-ember);
+}
+
+a.pillar:hover .pillar__title {
+  color: var(--color-ember);
+}
+
+a.pillar:hover .pillar__screen span {
+  color: var(--color-ember);
+}
+
+a.pillar:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: 4px;
+}
+
 .pillar__head {
   display: flex;
   align-items: baseline;
