@@ -343,6 +343,32 @@ main > * {
 .cover__item:nth-child(13) { grid-area: 4 / 7; margin-left: 2.5vw; top: 5.5vh; }
 .cover__item:nth-child(14) { display: none; }
 
+/* Sub-desktop collage: the desktop vh offsets push row-1 tiles up behind
+   the wordmark and menu toggle on short viewports, and the row-4 pushes
+   crowd the footer line. Keep a deliberate five-tile composition (the two
+   2x2 anchors + the row-4 singles), drop the rest. */
+@media (max-width: 1100px) {
+  .cover__item:nth-child(1),
+  .cover__item:nth-child(2),
+  .cover__item:nth-child(4),
+  .cover__item:nth-child(5),
+  .cover__item:nth-child(6),
+  .cover__item:nth-child(7) {
+    display: none;
+  }
+
+  .cover__item:nth-child(12) {
+    grid-area: 2 / 7 / 4 / 9;
+    top: 0;
+  }
+
+  .cover__item:nth-child(8),
+  .cover__item:nth-child(9),
+  .cover__item:nth-child(13) {
+    top: 0;
+  }
+}
+
 /* ---------- hero title ---------- */
 
 .title {
@@ -1021,6 +1047,11 @@ span.writlist__link:hover .writlist__name {
 .gate__submit:active {
   transform: translate(2px, 2px);
   box-shadow: 2px 2px 0 var(--color-ember);
+}
+
+.gate__submit:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: 4px;
 }
 
 .gate__error {
@@ -1839,6 +1870,13 @@ span.writlist__link:hover .writlist__name {
 @media (max-width: 760px) {
   .page__inner--split {
     grid-template-columns: 1fr;
+  }
+
+  /* Touch targets: menu rows measure ~32px tall at phone sizes; pad the
+     top only so the hover underline (anchored to the box bottom) stays
+     glued under the text while the hit area reaches ~44px. */
+  .menu__item {
+    padding-top: 0.75rem;
   }
 
   /* Stack name above meta instead of a tight two-column row: at this
