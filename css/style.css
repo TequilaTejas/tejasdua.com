@@ -387,6 +387,10 @@ main > * {
   align-items: start;
 }
 
+.page__inner--split > .pagenav {
+  grid-column: 1 / -1;
+}
+
 .page__inner--center {
   display: flex;
   flex-direction: column;
@@ -414,6 +418,44 @@ main > * {
 
 .page__title--center {
   text-align: center;
+}
+
+/* ---------- pagenav ---------- */
+
+.pagenav {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-top: clamp(3rem, 8vh, 5rem);
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--color-line);
+  font-family: 'Handjet', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 1.1rem;
+}
+
+.pagenav--full {
+  align-self: stretch;
+  width: 100%;
+}
+
+.pagenav a {
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.pagenav a:hover,
+.pagenav a:focus-visible {
+  color: var(--color-ember);
+}
+
+.pagenav a:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: 3px;
 }
 
 /* ---------- work ---------- */
@@ -455,7 +497,9 @@ main > * {
   font-size: 1.1rem;
   letter-spacing: 0.15em;
   color: var(--color-ink-dim);
-  white-space: nowrap;
+  white-space: normal;
+  text-align: right;
+  max-width: 40%;
 }
 
 .worklist__thumb {
@@ -507,12 +551,13 @@ main > * {
   list-style: none;
   margin: 1.8rem 0 0;
   padding: 0;
-  max-width: 34ch;
+  max-width: 100%;
 }
 
 .about__exp li {
-  display: flex;
-  gap: 1.2rem;
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  column-gap: 1.2rem;
   padding: 0.5rem 0;
   border-top: 1px solid var(--color-line);
   font-size: 1.05rem;
@@ -522,7 +567,6 @@ main > * {
 }
 
 .about__exp span {
-  flex: 0 0 3.5em;
   color: var(--color-ember);
   font-weight: 700;
 }
@@ -540,12 +584,13 @@ main > * {
   list-style: none;
   margin: 0;
   padding: 0;
-  max-width: 34ch;
+  max-width: 100%;
 }
 
 .about__facts li {
-  display: flex;
-  gap: 1.2rem;
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  column-gap: 1.2rem;
   padding: 0.7rem 0;
   border-top: 1px solid var(--color-line);
   font-size: 1.25rem;
@@ -554,7 +599,6 @@ main > * {
 }
 
 .about__facts b {
-  flex: 0 0 5em;
   font-weight: 700;
   color: var(--color-ember);
 }
@@ -648,14 +692,14 @@ main > * {
 .writlist__link {
   display: flex;
   align-items: baseline;
-  gap: 2rem;
+  gap: 0.8rem;
   padding: 1.2rem 0.2rem;
   color: var(--color-ink);
   text-decoration: none;
 }
 
 .writlist__date {
-  flex: 0 0 6em;
+  flex: 0 0 5rem;
   font-size: 1.05rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -664,7 +708,7 @@ main > * {
 
 .writlist__name {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: clamp(1.05rem, 2vw, 1.5rem);
+  font-size: clamp(1.05rem, 2vw, 1.7rem);
   font-weight: 600;
   line-height: 1.25;
   transition: color 0.2s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);

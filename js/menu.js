@@ -131,7 +131,11 @@ const rebuildAt = (progress, reverseEase, withTiles) => {
 };
 
 // Shows one view underneath the menu and hides the rest.
-const setView = (next) => {
+// fromHistory: true when this view swap is driven by a popstate (back/
+// forward) event, or by the very first paint. In both cases the browser
+// history entry already reflects this view, so we must not push a new one
+// (that would fill history with duplicates and break the back button).
+const setView = (next, fromHistory = false) => {
   view = next;
   document.body.dataset.view = next;
 
@@ -145,8 +149,8 @@ const setView = (next) => {
     if (active) page.scrollTop = 0;
   });
 
-  if (history.replaceState) {
-    history.replaceState(null, '', isHome ? '#home' : `#${next}`);
+  if (!fromHistory && history.pushState) {
+    history.pushState(null, '', isHome ? '#home' : `#${next}`);
   }
 };
 
@@ -169,8 +173,8 @@ const revealPageContent = (next) => {
   );
 };
 
-const closeMenuOnto = (next) => {
-  setView(next);
+const closeMenuOnto = (next, fromHistory) => {
+  setView(next, fromHistory);
   isOpen = false;
   syncA11y();
 
@@ -183,7 +187,11 @@ const closeMenuOnto = (next) => {
   revealPageContent(next);
 };
 
-const navigateTo = (next) => {
+// fromHistory: true when a popstate (back/forward) triggered this
+// navigation. The menu-sweep transition still plays either way, so
+// back/forward animate between views just like a click would; setView
+// simply skips pushing a new history entry in that case.
+const navigateTo = (next, fromHistory = false) => {
   if (navigating || !VIEWS.includes(next)) return;
 
   if (isOpen) {
@@ -192,7 +200,7 @@ const navigateTo = (next) => {
       return;
     }
     navigating = true;
-    closeMenuOnto(next);
+    closeMenuOnto(next, fromHistory);
     return;
   }
 
@@ -202,7 +210,7 @@ const navigateTo = (next) => {
   navigating = true;
   rebuildAt(0, FULL_CLOSE_EASE, false);
   timeline.timeScale(1.4).play();
-  timeline.eventCallback('onComplete', () => closeMenuOnto(next));
+  timeline.eventCallback('onComplete', () => closeMenuOnto(next, fromHistory));
 };
 
 const toggleMenu = () => {
@@ -262,7 +270,15 @@ const withTimeout = (promise, ms) =>
 
 const init = () => {
   const initial = location.hash.replace('#', '');
-  setView(VIEWS.includes(initial) ? initial : 'home');
+  const initialView = VIEWS.includes(initial) ? initial : 'home';
+
+  // Establish the base history entry ourselves (replace, not push) so the
+  // very first back-button press after landing on the site exits cleanly
+  // instead of bouncing between duplicate entries for the same view.
+  if (history.replaceState) {
+    history.replaceState(null, '', initialView === 'home' ? '#home' : `#${initialView}`);
+  }
+  setView(initialView, true);
 
   syncA11y();
   rebuildAt(0, FULL_CLOSE_EASE, view === 'home');
@@ -291,6 +307,19 @@ const init = () => {
       toggleMenu();
       toggleButton.focus();
     }
+  });
+
+  // Back/forward: the browser has already updated location.hash by the
+  // time this fires, so just resolve it against the whitelist and replay
+  // the same menu-sweep transition onto that view. If a transition is
+  // already in flight, navigateTo's `navigating` lockout drops this event
+  // rather than corrupting the timeline; the next popstate (or a manual
+  // nav) will resync the visible view with the URL.
+  window.addEventListener('popstate', () => {
+    const target = location.hash.replace('#', '');
+    const resolved = VIEWS.includes(target) ? target : 'home';
+    if (resolved === view) return;
+    navigateTo(resolved, true);
   });
 
   let resizeTimer;
