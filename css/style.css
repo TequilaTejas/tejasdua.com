@@ -669,7 +669,9 @@ main > * {
   box-shadow: 6px 6px 0 var(--color-ember-deep);
 }
 
-.workrow--static:hover .workrow__name {
+/* Doubled class beats the later `.workrow:hover .workrow__name` ember
+   rule at equal source order. */
+.workrow.workrow--static:hover .workrow__name {
   color: var(--color-ink);
 }
 
@@ -1066,12 +1068,14 @@ span.writlist__link:hover .writlist__name {
 
 /* Card-level hover tooltip (same chip language as the email tooltip);
    used to flag "documentation coming soon" on built-but-unwritten
-   experiments. */
-.pillar[data-tip] {
+   experiments and undocumented work rows. */
+.pillar[data-tip],
+.workrow[data-tip] {
   position: relative;
 }
 
-.pillar[data-tip]::after {
+.pillar[data-tip]::after,
+.workrow[data-tip]::after {
   content: attr(data-tip);
   position: absolute;
   top: -0.9rem;
@@ -1095,7 +1099,8 @@ span.writlist__link:hover .writlist__name {
   transition: opacity 0.18s, transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.pillar[data-tip]:hover::after {
+.pillar[data-tip]:hover::after,
+.workrow[data-tip]:hover::after {
   opacity: 1;
   transform: translate(-50%, 0);
 }

@@ -169,36 +169,51 @@
       blip(1318.51, 0.35, 'square', 0.055, 0.08);
     },
     // Dead click: a low felt-covered tick acknowledging the press did
-    // nothing. Quiet enough to be subliminal.
+    // nothing. Audible, but clearly duller than the select blip.
     dud() {
-      blip(150, 0.04, 'triangle', 0.035);
-      blip(95, 0.06, 'sine', 0.03, 0.005);
+      blip(160, 0.05, 'triangle', 0.1);
+      blip(95, 0.07, 'sine', 0.07, 0.006);
     },
-    // Two-bark 8-bit woof for Franky: pitch-diving sawtooth through a
-    // closing lowpass reads as a small dog saying hello.
+    // Two-bark woof for Franky. A bark is a fast rise-then-fall pitch
+    // contour ("wuh-f") with a puff of band-passed breath noise, not a
+    // plain dive; the up-down sweep is what reads as dog.
     woof() {
       if (!ctx || !enabled) return;
-      const bark = (at, startHz) => {
+      const bark = (at) => {
         const t = now() + at;
         const osc = ctx.createOscillator();
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(startHz, t);
-        osc.frequency.exponentialRampToValueAtTime(80, t + 0.1);
-        const lp = ctx.createBiquadFilter();
-        lp.type = 'lowpass';
-        lp.Q.value = 2;
-        lp.frequency.setValueAtTime(950, t);
-        lp.frequency.exponentialRampToValueAtTime(280, t + 0.1);
-        const g = ctx.createGain();
-        g.gain.setValueAtTime(0, t);
-        g.gain.linearRampToValueAtTime(0.16, t + 0.015);
-        g.gain.exponentialRampToValueAtTime(0.0001, t + 0.13);
-        osc.connect(lp).connect(g).connect(master);
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(110, t);
+        osc.frequency.exponentialRampToValueAtTime(340, t + 0.035);
+        osc.frequency.exponentialRampToValueAtTime(70, t + 0.12);
+        const og = ctx.createGain();
+        og.gain.setValueAtTime(0, t);
+        og.gain.linearRampToValueAtTime(0.24, t + 0.02);
+        og.gain.exponentialRampToValueAtTime(0.0001, t + 0.15);
+        osc.connect(og).connect(master);
         osc.start(t);
-        osc.stop(t + 0.15);
+        osc.stop(t + 0.17);
+
+        const len = Math.ceil(ctx.sampleRate * 0.12);
+        const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+        const d = buf.getChannelData(0);
+        for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+        const noi = ctx.createBufferSource();
+        noi.buffer = buf;
+        const bp = ctx.createBiquadFilter();
+        bp.type = 'bandpass';
+        bp.Q.value = 1;
+        bp.frequency.setValueAtTime(750, t);
+        bp.frequency.exponentialRampToValueAtTime(250, t + 0.1);
+        const ng = ctx.createGain();
+        ng.gain.setValueAtTime(0, t);
+        ng.gain.linearRampToValueAtTime(0.09, t + 0.015);
+        ng.gain.exponentialRampToValueAtTime(0.0001, t + 0.11);
+        noi.connect(bp).connect(ng).connect(master);
+        noi.start(t);
       };
-      bark(0, 250);
-      bark(0.17, 290);
+      bark(0);
+      bark(0.19);
     },
   };
 
