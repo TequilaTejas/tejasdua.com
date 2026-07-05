@@ -79,8 +79,11 @@
           <h2 class="page__title" data-reveal>Selected<br />Projects</h2>
           <ul class="worklist">
             <li class="worklist__row" data-reveal>
-              <a href="#cs-pai" class="worklist__link" data-nav="cs-pai">
-                <span class="worklist__name">Redesigning Presentations.ai</span>
+              <!-- In-site case study (#cs-pai) hidden for now; external link instead.
+                   To restore: swap href/data-nav back to #cs-pai, drop target/rel and the ext arrow,
+                   and re-add 'cs-pai' to VIEWS in js/menu.js. -->
+              <a href="https://www.figma.com/proto/fZWvN8XauCtWmwd46BbOyD/Portfolio?node-id=1-4882&t=CUnQCotD8SODXFba-1" class="worklist__link" target="_blank" rel="noopener">
+                <span class="worklist__name">Redesigning Presentations.ai <span class="worklist__ext" aria-hidden="true">&#8599;</span></span>
                 <span class="worklist__meta">Case study · Rebuilding the world's most used business tool</span>
               </a>
               <img class="worklist__thumb" src="assets/cs-pai/dashboard-browser.jpg" alt="New Presentations.ai dashboard" loading="lazy" />
@@ -196,10 +199,42 @@
         </div>
       </section>
 
+      <!-- AI EXPERIMENTS -->
+      <section class="page page--ai" data-page="ai" aria-hidden="true">
+        <div class="page__inner">
+          <p class="page__kicker" data-reveal>03 / AI Experiments</p>
+          <h2 class="page__title" data-reveal>AI<br />experiments</h2>
+          <p class="about__lead" data-reveal>
+            Prompt-built toys, agent workflows and generation experiments.
+            The fresh batch is loading.
+          </p>
+          <ul class="writlist">
+            <li data-reveal>
+              <span class="writlist__link">
+                <span class="writlist__date">Soon</span>
+                <span class="writlist__name">Freeform slide generation, no templates</span>
+              </span>
+            </li>
+            <li data-reveal>
+              <span class="writlist__link">
+                <span class="writlist__date">Soon</span>
+                <span class="writlist__name">Hindi dub pipeline</span>
+              </span>
+            </li>
+            <li data-reveal>
+              <span class="writlist__link">
+                <span class="writlist__date">Soon</span>
+                <span class="writlist__name">Reels script engine</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
       <!-- CONTACT -->
       <section class="page page--contact" data-page="contact" aria-hidden="true">
         <div class="page__inner page__inner--center">
-          <p class="page__kicker" data-reveal>03 / Contact</p>
+          <p class="page__kicker" data-reveal>04 / Contact</p>
           <h2 class="page__title page__title--center" data-reveal>Say hello</h2>
           <a class="contact__mail" href="mailto:tejas.dua.design@gmail.com" data-reveal>tejas.dua.design@gmail.com</a>
           <ul class="contact__links">
@@ -842,7 +877,8 @@
         <a class="menu__item" href="#playground" data-target="playground"><i>03</i>Playground</a>
         <a class="menu__item" href="#writing" data-target="writing"><i>04</i>Writing</a>
         -->
-        <a class="menu__item" href="#contact" data-target="contact"><i>03</i>Contact</a>
+        <a class="menu__item" href="#ai" data-target="ai"><i>03</i>AI Experiments</a>
+        <a class="menu__item" href="#contact" data-target="contact"><i>04</i>Contact</a>
       </nav>
     </main>
 
