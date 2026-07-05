@@ -32,7 +32,9 @@ const SCROLL_GESTURE_COOLDOWN_MS = 1000;
 const CLIP_CLOSED = 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)';
 const CLIP_OPEN = 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)';
 
-const VIEWS = ['home', 'work', 'about', 'playground', 'writing', 'contact', 'cs-pai'];
+// 'playground' and 'writing' are hidden for now; re-add here and in the
+// menu markup to restore them.
+const VIEWS = ['home', 'work', 'about', 'contact', 'cs-pai'];
 
 let view = 'home';
 let isOpen = false;
