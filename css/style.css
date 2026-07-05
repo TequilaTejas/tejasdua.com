@@ -1659,6 +1659,17 @@ main > * {
 
 /* ---------- franky ---------- */
 
+/* Spotlight dim behind the reveal: above the cover tiles and hero
+   title, below the frame line, menu, and chrome corners, so the
+   hovered text stays crisp and the menu can never open beneath it. */
+.franky-dim {
+  z-index: 450;
+  background: var(--color-bg);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .franky {
   position: fixed;
   top: 0;

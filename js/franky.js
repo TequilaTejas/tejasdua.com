@@ -17,6 +17,7 @@
 
   const trigger = document.querySelector('.frame__memory');
   const outer = document.querySelector('.franky');
+  const dim = document.querySelector('.franky-dim');
   const frame = outer ? outer.querySelector('.franky__frame') : null;
   const innerImg = outer ? outer.querySelector('.franky__img') : null;
   if (!trigger || !outer || !frame || !innerImg) return;
@@ -51,6 +52,12 @@
     gsap.killTweensOf([frame, innerImg]);
     gsap.set(outer, { autoAlpha: 1 });
 
+    // Spotlight: dim everything behind the card onto the warm near-black.
+    if (dim) {
+      gsap.killTweensOf(dim);
+      gsap.to(dim, { autoAlpha: 0.85, duration: 0.5, ease: 'power2.out' });
+    }
+
     gsap.fromTo(
       frame,
       { opacity: 0, yPercent: 50, rotation: REST_ROTATION - 15, scale: 0 },
@@ -73,6 +80,11 @@
 
   const hideFranky = () => {
     gsap.killTweensOf([frame, innerImg]);
+
+    if (dim) {
+      gsap.killTweensOf(dim);
+      gsap.to(dim, { autoAlpha: 0, duration: 0.2, ease: 'sine.out' });
+    }
 
     gsap.to(frame, {
       yPercent: -40,
