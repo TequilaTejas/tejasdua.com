@@ -716,6 +716,42 @@ main > * {
    match the panel padding), so it reads consistently no matter how the
    title wraps. A crisp stroked SVG (square caps, mitered joins) matching
    the toggle icon, not a pixel-font glyph. Nudges up-and-out on hover. */
+/* Large UI showcase band spanning the full card under both text columns.
+   Ember placeholder with diagonal hatching until real screenshots land;
+   swap the inner span for an <img> (same wide frame) when they do. */
+.workrow__visual {
+  grid-column: 1 / -1;
+  display: grid;
+  place-items: center;
+  margin-top: clamp(1.2rem, 2vw, 1.8rem);
+  aspect-ratio: 21 / 8;
+  background-color: var(--color-ember);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    oklch(0.45 0.15 40 / 0.35) 0,
+    oklch(0.45 0.15 40 / 0.35) 2px,
+    transparent 2px,
+    transparent 14px
+  );
+}
+
+.workrow__visual span {
+  padding: 0.5rem 0.75rem;
+  background: var(--color-bg);
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-ink);
+}
+
+@media (max-width: 820px) {
+  .workrow__visual {
+    aspect-ratio: 16 / 9;
+  }
+}
+
 .workrow__ext {
   position: absolute;
   top: clamp(1.6rem, 3vw, 2.6rem);

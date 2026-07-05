@@ -21,6 +21,7 @@
   let master = null;
   let ambientNodes = null;
   let lastHoverAt = 0;
+  let woofBuffer = null;
   let enabled = localStorage.getItem(STORE_KEY) !== 'off';
 
   const now = () => ctx.currentTime;
@@ -36,7 +37,25 @@
     master.gain.value = enabled ? 1 : 0;
     master.connect(ctx.destination);
     startAmbient();
+    loadWoof();
     return true;
+  };
+
+  /*
+   * The one real recording on the site: a dog bark for the Franky line.
+   * "Bark Huayra" by redpanal.org, CC BY-SA 3.0, via Wikimedia Commons
+   * (https://commons.wikimedia.org/wiki/File:Bark_Huayra.ogg), re-rendered
+   * to mono WAV so every browser's decodeAudioData accepts it. The synth
+   * bark below stays as the fallback while this loads (or if it fails).
+   */
+  const loadWoof = () => {
+    fetch('assets/sfx/woof.wav')
+      .then((r) => r.arrayBuffer())
+      .then((buf) => ctx.decodeAudioData(buf))
+      .then((decoded) => {
+        woofBuffer = decoded;
+      })
+      .catch(() => {});
   };
 
   /* ---------- ambient room tone ---------- */
@@ -174,11 +193,21 @@
       blip(160, 0.05, 'triangle', 0.1);
       blip(95, 0.07, 'sine', 0.07, 0.006);
     },
-    // Two-bark woof for Franky. A bark is a fast rise-then-fall pitch
-    // contour ("wuh-f") with a puff of band-passed breath noise, not a
-    // plain dive; the up-down sweep is what reads as dog.
+    // Franky's bark: the real recording when it's loaded, otherwise the
+    // synthesized stand-in below.
     woof() {
       if (!ctx || !enabled) return;
+      if (woofBuffer) {
+        const src = ctx.createBufferSource();
+        src.buffer = woofBuffer;
+        const g = ctx.createGain();
+        g.gain.value = 0.55;
+        src.connect(g).connect(master);
+        src.start();
+        return;
+      }
+      // Fallback synth bark: fast rise-then-fall pitch contour ("wuh-f")
+      // with a puff of band-passed breath noise.
       const bark = (at) => {
         const t = now() + at;
         const osc = ctx.createOscillator();
