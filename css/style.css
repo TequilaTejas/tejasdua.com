@@ -113,7 +113,8 @@ main > * {
   padding: 0.55rem 0.8rem;
   box-shadow: 4px 4px 0 var(--color-ember);
   transition: box-shadow 0.18s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s;
 }
 
 .frame__resume:hover {
@@ -661,6 +662,17 @@ main > * {
   box-shadow: 9px 9px 0 var(--color-ember);
 }
 
+/* Rows without a destination yet: same panel, none of the link
+   affordances, so nothing fakes clickability. */
+.workrow--static:hover {
+  transform: none;
+  box-shadow: 6px 6px 0 var(--color-ember-deep);
+}
+
+.workrow--static:hover .workrow__name {
+  color: var(--color-ink);
+}
+
 .workrow__meta {
   display: block;
   margin-bottom: 0.7rem;
@@ -1045,6 +1057,47 @@ span.writlist__link:hover .writlist__name {
 
 .pillar__status--wip {
   color: var(--color-ember);
+}
+
+.pillar__status--live {
+  color: var(--color-bg);
+  background: var(--color-ember);
+}
+
+/* Card-level hover tooltip (same chip language as the email tooltip);
+   used to flag "documentation coming soon" on built-but-unwritten
+   experiments. */
+.pillar[data-tip] {
+  position: relative;
+}
+
+.pillar[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  top: -0.9rem;
+  left: 50%;
+  transform: translate(-50%, 6px);
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--color-ink);
+  background: var(--color-bg);
+  box-shadow: 3px 3px 0 var(--color-ember);
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 0.7rem;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-ink);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.18s, transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pillar[data-tip]:hover::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .pillar__body {
@@ -2193,15 +2246,26 @@ span.writlist__link:hover .writlist__name {
 
 /* ---------- franky ---------- */
 
-/* Spotlight dim behind the reveal: above the cover tiles and hero
-   title, below the frame line, menu, and chrome corners, so the
-   hovered text stays crisp and the menu can never open beneath it. */
+/* Spotlight dim behind the reveal: above everything, chrome corners
+   included (wordmark, menu toggle, sound chip), so the whole cabinet
+   goes dark. Only the hovered memory line and Franky himself stay lit;
+   franky.js lifts the frame via body.franky-active while hovering. */
 .franky-dim {
-  z-index: 450;
+  z-index: 750;
   background: var(--color-bg);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+}
+
+body.franky-active .frame {
+  z-index: 770;
+}
+
+/* The resume chip shares the lifted frame but is not part of the moment:
+   fade it down to roughly what the dim leaves everything else at. */
+body.franky-active .frame__resume {
+  opacity: 0.12;
 }
 
 .franky {

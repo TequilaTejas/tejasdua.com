@@ -52,6 +52,10 @@
     gsap.killTweensOf([frame, innerImg]);
     gsap.set(outer, { autoAlpha: 1 });
 
+    // Lifts the frame line above the dim so the hovered text stays lit
+    // while the chrome corners fall behind the spotlight.
+    document.body.classList.add('franky-active');
+
     // Spotlight: dim everything behind the card onto the warm near-black.
     if (dim) {
       gsap.killTweensOf(dim);
@@ -80,6 +84,8 @@
 
   const hideFranky = () => {
     gsap.killTweensOf([frame, innerImg]);
+
+    document.body.classList.remove('franky-active');
 
     if (dim) {
       gsap.killTweensOf(dim);

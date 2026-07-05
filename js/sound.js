@@ -48,14 +48,16 @@
     out.gain.value = 0;
     out.connect(master);
     // Long fade-in so the room tone materialises instead of clicking on.
-    out.gain.linearRampToValueAtTime(1, now() + 4);
+    out.gain.linearRampToValueAtTime(1, now() + 6);
 
     // Two slightly detuned low sines through a dark lowpass: the hum.
+    // Deliberately near the edge of audibility; room tone should be felt
+    // when it stops, never noticed while it plays.
     const hum = ctx.createGain();
-    hum.gain.value = 0.022;
+    hum.gain.value = 0.006;
     const lowpass = ctx.createBiquadFilter();
     lowpass.type = 'lowpass';
-    lowpass.frequency.value = 160;
+    lowpass.frequency.value = 110;
     hum.connect(lowpass).connect(out);
 
     const oscA = ctx.createOscillator();
@@ -79,15 +81,15 @@
     hissBand.frequency.value = 5200;
     hissBand.Q.value = 0.6;
     const hiss = ctx.createGain();
-    hiss.gain.value = 0.0045;
+    hiss.gain.value = 0.0009;
     noise.connect(hissBand).connect(hiss).connect(out);
 
     // Slow LFO drifting the lowpass so the hum breathes.
     const lfo = ctx.createOscillator();
     lfo.type = 'sine';
-    lfo.frequency.value = 0.07;
+    lfo.frequency.value = 0.05;
     const lfoDepth = ctx.createGain();
-    lfoDepth.gain.value = 40;
+    lfoDepth.gain.value = 20;
     lfo.connect(lfoDepth).connect(lowpass.frequency);
 
     oscA.start();
@@ -166,6 +168,38 @@
       blip(987.77, 0.09, 'square', 0.06);
       blip(1318.51, 0.35, 'square', 0.055, 0.08);
     },
+    // Dead click: a low felt-covered tick acknowledging the press did
+    // nothing. Quiet enough to be subliminal.
+    dud() {
+      blip(150, 0.04, 'triangle', 0.035);
+      blip(95, 0.06, 'sine', 0.03, 0.005);
+    },
+    // Two-bark 8-bit woof for Franky: pitch-diving sawtooth through a
+    // closing lowpass reads as a small dog saying hello.
+    woof() {
+      if (!ctx || !enabled) return;
+      const bark = (at, startHz) => {
+        const t = now() + at;
+        const osc = ctx.createOscillator();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(startHz, t);
+        osc.frequency.exponentialRampToValueAtTime(80, t + 0.1);
+        const lp = ctx.createBiquadFilter();
+        lp.type = 'lowpass';
+        lp.Q.value = 2;
+        lp.frequency.setValueAtTime(950, t);
+        lp.frequency.exponentialRampToValueAtTime(280, t + 0.1);
+        const g = ctx.createGain();
+        g.gain.setValueAtTime(0, t);
+        g.gain.linearRampToValueAtTime(0.16, t + 0.015);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + 0.13);
+        osc.connect(lp).connect(g).connect(master);
+        osc.start(t);
+        osc.stop(t + 0.15);
+      };
+      bark(0, 250);
+      bark(0.17, 290);
+    },
   };
 
   const play = (name) => {
@@ -225,7 +259,7 @@
     '.menu__item',
     '.toggle',
     '.wordmark',
-    '.workrow',
+    'a.workrow',
     '.writlist__link[href]',
     '.contact__links a',
     '.frame__resume',
@@ -238,11 +272,15 @@
     '.menu__item',
     '.wordmark',
     '[data-nav]',
-    '.workrow',
+    'a.workrow',
     '.writlist__link[href]',
     '.contact__links a',
     '.frame__resume',
   ].join(', ');
+
+  // Anything that is genuinely interactive, listed or not; clicks landing
+  // outside all of it get the dead-click dud instead.
+  const INTERACTIVE = 'a, button, input, textarea, select, label, [data-nav]';
 
   // Delegated so late/re-rendered nodes need no re-wiring. mouseover (not
   // mouseenter) bubbles; closest() scopes it to one blip per element entry.
@@ -262,8 +300,17 @@
       S.play('coin');
       return;
     }
-    if (event.target.closest(SELECTABLE)) S.play('select');
+    if (event.target.closest(SELECTABLE)) {
+      S.play('select');
+      return;
+    }
+    // A click that meant nothing still deserves an acknowledgement.
+    if (!event.target.closest(INTERACTIVE)) S.play('dud');
   });
+
+  // Franky says hi.
+  const memory = document.querySelector('.frame__memory');
+  if (memory) memory.addEventListener('mouseenter', () => S.play('woof'));
 
   // Insert coin: unlocking the password gate is the arcade's coin slot.
   // gate.js drops the body's `gated` class on success; play the coin then.
