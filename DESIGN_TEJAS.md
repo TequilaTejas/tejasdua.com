@@ -53,11 +53,12 @@ Two families, each with a clear job. Never swap them.
   the hero name, all headings, menu items, buttons, labels, stat numbers,
   pull-quotes. This is the brand's voice. Set most display type uppercase with
   positive letter-spacing (`0.02em` to `0.25em` depending on size).
-- **Bricolage Grotesque** (humanist sans), weights 400 and 600. Used **only** for
-  long-form case-study body copy, where pixel type would be unreadable. Sentence
-  case, normal letter-spacing, line-height `1.65`.
+- **IBM Plex Mono** (terminal mono), weights 400 and 600. Used for everything you
+  read rather than scan: long-form case-study body copy, leads, list-item names,
+  hints. Sentence case, normal letter-spacing, line-height `1.55` to `1.65`. Runs
+  wide; size it a step smaller than the Handjet equivalent.
 
-The rule: **Handjet for anything you scan, Bricolage for anything you read.**
+The rule: **Handjet for anything you scan, Plex Mono for anything you read.**
 
 Scale is fluid with `clamp()` and steps at least 1.25 apart:
 
@@ -151,7 +152,7 @@ GSAP-driven clip-path menu.
 
 ## 9. Hard rules
 
-1. Two fonts only: Handjet to scan, Bricolage to read.
+1. Two fonts only: Handjet to scan, IBM Plex Mono to read.
 2. One accent: ember. It always means active or alive.
 3. Bordered box plus hard offset shadow is the only elevation style.
 4. The menu clip transition is the brand. Do not replace it with a fade.
