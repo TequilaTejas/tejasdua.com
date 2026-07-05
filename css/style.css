@@ -374,6 +374,8 @@ main > * {
 }
 
 .page__inner {
+  display: flex;
+  flex-direction: column;
   min-height: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -383,6 +385,7 @@ main > * {
 .page__inner--split {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
+  grid-template-rows: 1fr auto;
   gap: clamp(2rem, 5vw, 5rem);
   align-items: start;
 }
@@ -395,8 +398,15 @@ main > * {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
+}
+
+/* Auto-margin split: first content child absorbs free space from above,
+   .pagenav's own margin-top: auto absorbs free space from below, so
+   the content block stays centered in the space above the pinned nav
+   instead of the nav floating wherever the (short) content happens to end. */
+.page__inner--center > :first-child {
+  margin-top: auto;
 }
 
 .page__kicker {
@@ -427,14 +437,19 @@ main > * {
   justify-content: space-between;
   align-items: baseline;
   gap: 1.5rem;
-  margin-top: clamp(3rem, 8vh, 5rem);
-  padding-top: 1.2rem;
+  /* margin-top: auto pins the nav to the bottom of the flex/grid page
+     column on short pages; the clamp() that used to live on margin-top
+     moves to padding-top so the hairline still sits a consistent
+     distance above the nav's own link text (and thus a consistent
+     distance off the viewport bottom) on every page. */
+  margin-top: auto;
+  padding-top: clamp(3rem, 8vh, 5rem);
   border-top: 1px solid var(--color-line);
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  font-size: 0.9rem;
 }
 
 .pagenav--full {
@@ -443,9 +458,13 @@ main > * {
 }
 
 .pagenav a {
-  color: var(--color-ink);
+  color: var(--color-ink-dim);
   text-decoration: none;
   transition: color 0.2s;
+}
+
+.pagenav a.pagenav__next {
+  color: var(--color-ink);
 }
 
 .pagenav a:hover,
@@ -496,8 +515,8 @@ main > * {
 .worklist__meta {
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--color-ink-dim);
   white-space: normal;
@@ -507,9 +526,9 @@ main > * {
 
 .worklist__thumb {
   position: absolute;
-  right: 18%;
+  right: 25%;
   top: 50%;
-  width: clamp(140px, 18vw, 230px);
+  width: clamp(120px, 13vw, 160px);
   aspect-ratio: 4 / 3;
   object-fit: cover;
   transform: translateY(-50%) rotate(-4deg) scale(0.85);
@@ -576,7 +595,7 @@ main > * {
   font-weight: 400;
   font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
 }
 
 .about__facts b {
@@ -603,7 +622,7 @@ main > * {
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
   font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-ink-dim);
 }
@@ -686,8 +705,8 @@ main > * {
   flex: 0 0 5rem;
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--color-ink-dim);
 }
@@ -734,17 +753,19 @@ main > * {
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem 3rem;
 }
 
 .contact__links a {
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
-  color: var(--color-ink-dim);
+  color: var(--color-ink);
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
   transition: color 0.2s;
 }
 
@@ -907,7 +928,7 @@ main > * {
   margin: 0;
   font-family: 'IBM Plex Mono', monospace;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.08em;
   font-size: 0.85rem;
   color: var(--color-ink-dim);
 }
@@ -1124,7 +1145,7 @@ main > * {
   font-weight: 400;
   font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   color: var(--color-ink-dim);
 }
 
