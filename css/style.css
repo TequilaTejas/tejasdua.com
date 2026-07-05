@@ -658,7 +658,13 @@ main > * {
   width: 100%;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  filter: saturate(0.85) contrast(1.05);
+  /* Same documentary desaturated-warm base as every other photo, plus a
+     mild sepia push: this is the one full-color (green/blue) photo on
+     the site, so without it it reads as a cold outlier against the
+     ember-toned home cover. Kept mild (not the cover tiles' full
+     duotone) since a portrait needs to stay recognizable once the
+     stand-in is swapped. */
+  filter: saturate(0.85) contrast(1.05) sepia(0.4);
   border: 2px solid var(--color-ink);
   box-shadow: 8px 8px 0 var(--color-ember-deep);
 }
@@ -1931,6 +1937,27 @@ span.writlist__link:hover .writlist__name {
 
   .cascade {
     max-width: 100%;
+  }
+}
+
+/* Phone landscape (e.g. 844x390): the hero title and the five-row menu
+   are both sized off `vw`, which is generous on a wide-but-short
+   viewport and crowds the pinned-bottom footer line (hero title bottom
+   edge and, worse, the menu's last item both encroach on "Designing in
+   memory of Franky"). Re-clamp both off `vh` instead so they scale with
+   the height that's actually scarce here; this is a real (if rare) edge
+   case, not a device to design around, so the fix stays minimal. */
+@media (max-height: 480px) and (orientation: landscape) {
+  .title {
+    font-size: clamp(2.2rem, 15vh, 6rem);
+  }
+
+  .menu {
+    gap: clamp(0.1rem, 0.6vh, 0.4rem);
+  }
+
+  .menu__item {
+    font-size: clamp(1.3rem, 5.6vh, 2.4rem);
   }
 }
 
