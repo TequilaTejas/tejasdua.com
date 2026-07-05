@@ -331,8 +331,8 @@ main > * {
 .cover__item:nth-child(1)  { grid-area: 1 / 1; top: -9vh; }
 .cover__item:nth-child(2)  { grid-area: 1 / 3; margin-left: -4.5vw; top: -5vh; }
 .cover__item:nth-child(3)  { grid-area: 3 / 1 / 5 / 3; margin-left: -3.5vw; top: 3vh; }
-.cover__item:nth-child(4)  { grid-area: 1 / 4; margin-left: -2.5vw; top: -8.5vh; }
-.cover__item:nth-child(5)  { grid-area: 1 / 5; margin-left: -0.5vw; top: -5vh; }
+.cover__item:nth-child(4)  { display: none; }
+.cover__item:nth-child(5)  { display: none; }
 .cover__item:nth-child(6)  { grid-area: 1 / 6; margin-left: 1.5vw; top: -8.5vh; }
 .cover__item:nth-child(7)  { grid-area: 3 / 8; top: 2vh; }
 .cover__item:nth-child(8)  { grid-area: 4 / 3; top: 4vh; }
@@ -396,6 +396,37 @@ main > * {
   letter-spacing: 0.3em;
   color: var(--color-ember);
   margin-bottom: 0.8em;
+  text-shadow: none;
+}
+
+/* Professional credential block below the name: role in Handjet (current
+   company in ember), then a mono "formerly" line that also carries the
+   IIT Roorkee mention. */
+.title__role {
+  font-family: 'Handjet', sans-serif;
+  font-weight: 600;
+  font-size: clamp(1rem, 1.9vw, 1.5rem);
+  line-height: 1.3;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  margin-top: 0.85em;
+  text-shadow: none;
+}
+
+.title__co {
+  color: var(--color-ember);
+}
+
+.title__cred {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: clamp(0.68rem, 1vw, 0.82rem);
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-dim);
+  margin-top: 0.7em;
   text-shadow: none;
 }
 
