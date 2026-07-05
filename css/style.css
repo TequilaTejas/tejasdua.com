@@ -161,12 +161,23 @@ main > * {
   line-height: 1;
   letter-spacing: 0.1em;
   padding: 0.65rem 0.9rem;
-  transition: color 0.2s, border-color 0.2s;
+  /* Same box language as the toggle and resume chip: permanent hard
+     offset shadow that grows on hover and presses on active. */
+  box-shadow: 5px 5px 0 var(--color-ember);
+  transition: box-shadow 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s, border-color 0.2s;
 }
 
 .wordmark:hover {
   color: var(--color-ember);
   border-color: var(--color-ember);
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--color-ember);
+}
+
+.wordmark:active {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--color-ember);
 }
 
 .wordmark:focus-visible {
@@ -524,6 +535,15 @@ main > * {
   max-width: 40%;
 }
 
+/* Below this, the hover thumb collides with the right-aligned meta
+   column (no room for both the ~120-160px image and the meta text at
+   once); only genuinely wide desktop layouts get the hover flourish. */
+@media (max-width: 1099px) {
+  .worklist__thumb {
+    display: none;
+  }
+}
+
 .worklist__thumb {
   position: absolute;
   right: 25%;
@@ -730,11 +750,27 @@ main > * {
   outline-offset: 2px;
 }
 
+/* "Soon" rows (AI Experiments) reuse this class on a bare <span>, not
+   an <a>: no href, nothing happens on click. Without this, they still
+   pick up the link's hover color-shift and slide, faking clickability
+   on a row that does nothing. */
+span.writlist__link {
+  cursor: default;
+}
+
+span.writlist__link:hover .writlist__name {
+  color: var(--color-ink);
+  transform: none;
+}
+
 /* ---------- contact ---------- */
 
 .contact__mail {
   margin: 1rem 0 2.5rem;
-  font-size: clamp(1.8rem, 5.5vw, 4.5rem);
+  /* Min bumped from 1.8rem: Handjet's "@" glyph loses its inner swirl
+     and reads as a blob at very small pixel sizes. A bit more room to
+     render keeps it legible on narrow phones. */
+  font-size: clamp(2.1rem, 5.5vw, 4.5rem);
   font-weight: 700;
   color: var(--color-ink);
   text-decoration: none;
@@ -860,7 +896,15 @@ main > * {
 .menu__item:focus-visible {
   color: var(--color-ember);
   letter-spacing: 0.06em;
-  outline: none;
+}
+
+/* Color-shift alone is identical to .is-current, so a keyboard user
+   can't tell "focused" from "this is the current page" without a
+   distinct marker. A visible outline (used by every other interactive
+   element on the site) resolves the ambiguity. */
+.menu__item:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: 8px;
 }
 
 .menu__item:hover::after,
@@ -1797,8 +1841,19 @@ main > * {
     grid-template-columns: 1fr;
   }
 
-  .worklist__thumb {
-    display: none;
+  /* Stack name above meta instead of a tight two-column row: at this
+     width the 40%-wide meta column wraps to a ragged 2-3 line block
+     with a dangling middot. Full-width, left-aligned meta reads clean
+     underneath the name instead. */
+  .worklist__link {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .worklist__meta {
+    max-width: 100%;
+    text-align: left;
   }
 
   .frame {
