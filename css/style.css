@@ -427,23 +427,12 @@ main > * {
   align-items: start;
 }
 
-.page__inner--split > .pagenav {
-  grid-column: 1 / -1;
-}
-
 .page__inner--center {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
-}
-
-/* Auto-margin split: first content child absorbs free space from above,
-   .pagenav's own margin-top: auto absorbs free space from below, so
-   the content block stays centered in the space above the pinned nav
-   instead of the nav floating wherever the (short) content happens to end. */
-.page__inner--center > :first-child {
-  margin-top: auto;
 }
 
 .page__kicker {
@@ -467,141 +456,114 @@ main > * {
   text-align: center;
 }
 
-/* ---------- pagenav ---------- */
-
-.pagenav {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1.5rem;
-  /* margin-top: auto pins the nav to the bottom of the flex/grid page
-     column on short pages; the clamp() that used to live on margin-top
-     moves to padding-top so the hairline still sits a consistent
-     distance above the nav's own link text (and thus a consistent
-     distance off the viewport bottom) on every page. */
-  margin-top: auto;
-  padding-top: clamp(3rem, 8vh, 5rem);
-  border-top: 1px solid var(--color-line);
-  font-family: 'IBM Plex Mono', monospace;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.9rem;
-}
-
-.pagenav--full {
-  align-self: stretch;
-  width: 100%;
-}
-
-.pagenav a {
-  color: var(--color-ink-dim);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.pagenav a.pagenav__next {
-  color: var(--color-ink);
-}
-
-.pagenav a:hover,
-.pagenav a:focus-visible {
-  color: var(--color-ember);
-}
-
-.pagenav a:focus-visible {
-  outline: 2px solid var(--color-ember);
-  outline-offset: 3px;
-}
 
 /* ---------- work ---------- */
 
-.worklist {
+.workrows {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-.worklist__row {
-  position: relative;
-  border-top: 1px solid var(--color-line);
-}
-
-.worklist__row:last-child {
-  border-bottom: 1px solid var(--color-line);
-}
-
-.worklist__link {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 2rem;
-  padding: 1.1rem 0.2rem;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.6rem);
+}
+
+/* Full-width row panel: title/meta on the left, description on the right.
+   The signature bordered box with a hard offset shadow (no rounded SaaS
+   card), lifting into live ember on hover since the whole row is a link. */
+.workrow {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+  padding: clamp(1.6rem, 3vw, 2.6rem);
+  border: 2px solid var(--color-ink);
+  background: var(--color-bg);
+  box-shadow: 6px 6px 0 var(--color-ember-deep);
   color: var(--color-ink);
   text-decoration: none;
-  text-transform: uppercase;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s;
 }
 
-.worklist__name {
-  font-size: clamp(1.8rem, 5vw, 3.6rem);
-  font-weight: 700;
-  line-height: 1;
-  transition: color 0.2s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+.workrow:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--color-ember);
 }
 
-.worklist__meta {
+.workrow__meta {
+  display: block;
+  margin-bottom: 0.7rem;
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-ink-dim);
-  white-space: normal;
-  text-align: right;
-  max-width: 40%;
 }
 
-/* Below this, the hover thumb collides with the right-aligned meta
-   column (no room for both the ~120-160px image and the meta text at
-   once); only genuinely wide desktop layouts get the hover flourish. */
-@media (max-width: 1099px) {
-  .worklist__thumb {
-    display: none;
-  }
+.workrow__name {
+  margin: 0;
+  font-family: 'Handjet', sans-serif;
+  font-size: clamp(1.8rem, 3.4vw, 3rem);
+  font-weight: 700;
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
 }
 
-.worklist__thumb {
-  position: absolute;
-  right: 25%;
-  top: 50%;
-  width: clamp(120px, 13vw, 160px);
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  transform: translateY(-50%) rotate(-4deg) scale(0.85);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 2;
-  transition: opacity 0.25s, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.worklist__row:hover .worklist__name,
-.worklist__link:focus-visible .worklist__name {
+.workrow:hover .workrow__name {
   color: var(--color-ember);
-  transform: translateX(0.4em);
 }
 
-.worklist__row:hover .worklist__thumb {
-  opacity: 1;
-  transform: translateY(-50%) rotate(-4deg) scale(1);
+.workrow__desc {
+  margin: 0;
+  /* Keep the first line clear of the corner link arrow. */
+  padding-right: 2rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: clamp(0.88rem, 1.1vw, 0.98rem);
+  line-height: 1.65;
+  color: var(--color-ink-dim);
 }
 
-.worklist__link:focus-visible {
+/* External-link marker pinned to the panel's top-right corner (inset to
+   match the panel padding), so it reads consistently no matter how the
+   title wraps. A crisp stroked SVG (square caps, mitered joins) matching
+   the toggle icon, not a pixel-font glyph. Nudges up-and-out on hover. */
+.workrow__ext {
+  position: absolute;
+  top: clamp(1.6rem, 3vw, 2.6rem);
+  right: clamp(1.6rem, 3vw, 2.6rem);
+  width: 1.4rem;
+  height: 1.4rem;
+  color: var(--color-ember);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.workrow:hover .workrow__ext {
+  transform: translate(0.2em, -0.2em);
+}
+
+.workrow:focus-visible {
   outline: 2px solid var(--color-ember);
-  outline-offset: 2px;
+  outline-offset: 4px;
+}
+
+/* Stack to a single column on narrow screens: title block over
+   description, matching how the pillars collapse. */
+@media (max-width: 820px) {
+  .workrow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 /* ---------- about ---------- */
 
+/* Writing list keeps the external-arrow flourish previously shared with
+   the work rows, so its base style lives on here. */
 .worklist__ext {
   display: inline-block;
   font-size: 0.55em;
@@ -610,44 +572,111 @@ main > * {
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.worklist__row:hover .worklist__ext,
 .writlist__link:hover .worklist__ext {
   transform: translate(0.25em, -0.65em);
 }
 
-.about__lead {
-  max-width: 40ch;
-  margin: 0 0 2.5rem;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
-  font-weight: 400;
-  line-height: 1.55;
+/* About: left column carries name + role + portrait, right column the
+   blurb and experience timeline. Narrower left than the shared split so
+   the reading column has room. */
+.page__inner--about {
+  grid-template-columns: 0.85fr 1.15fr;
+  column-gap: clamp(2.5rem, 6vw, 6rem);
 }
 
-.about__facts {
+.about__id {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top-align the right column's "About" heading with the top edge of the
+   portrait, not the kicker above it. The offset equals the kicker block
+   height (kicker + its margin + the photo's top margin); only applies
+   while the columns sit side by side. */
+@media (min-width: 761px) {
+  .about__detail {
+    margin-top: 44px;
+  }
+}
+
+/* Small breath between the kicker and the portrait so the photo doesn't
+   crowd the label. */
+.about__id .about__photo {
+  margin-top: 1rem;
+}
+
+/* Section headings on the right column: Handjet, sized between the page
+   title and body so About / Experience read as peers. */
+.about__h {
+  margin: 0 0 1.5rem;
+  font-family: 'Handjet', sans-serif;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.about__h--exp {
+  margin-top: clamp(3.5rem, 7vh, 5.5rem);
+}
+
+.about__lead {
+  max-width: 54ch;
+  margin: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--color-ink-dim);
+}
+
+/* Experience timeline: hairline-ruled rows, company (Handjet) and role
+   (mono) on the left, year pinned right. */
+.exp {
   list-style: none;
   margin: 0;
   padding: 0;
-  max-width: 100%;
 }
 
-.about__facts li {
-  display: grid;
-  grid-template-columns: 8rem 1fr;
-  column-gap: 1.2rem;
-  padding: 0.7rem 0;
+.exp__row {
+  display: flex;
+  align-items: baseline;
+  gap: 1.1rem;
+  padding: clamp(1.15rem, 2.4vh, 1.7rem) 0.1rem;
   border-top: 1px solid var(--color-line);
-  font-family: 'IBM Plex Mono', monospace;
-  font-weight: 400;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
 }
 
-.about__facts b {
+.exp__row:last-child {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.exp__co {
   font-family: 'Handjet', sans-serif;
   font-weight: 700;
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.exp__role {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-ink-dim);
+}
+
+.exp__year {
+  margin-left: auto;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--color-ember);
+  white-space: nowrap;
 }
 
 .about__photo {
@@ -656,7 +685,7 @@ main > * {
 
 .about__photo img {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
   /* Same documentary desaturated-warm base as every other photo, plus a
      mild sepia push: this is the one full-color (green/blue) photo on
@@ -795,18 +824,151 @@ span.writlist__link:hover .writlist__name {
   transform: none;
 }
 
+/* ---------- ai experiments (content pillars) ---------- */
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.6rem);
+}
+
+/* The signature object: one 2px ink border with a hard offset shadow, no
+   rounded corners, no soft blur. Static (not a lift-on-hover button): these
+   are display panels, not links, so nothing fakes clickability. */
+.pillar {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.3rem, 2vw, 1.8rem);
+  border: 2px solid var(--color-ink);
+  background: var(--color-bg);
+  box-shadow: 6px 6px 0 var(--color-ember-deep);
+}
+
+.pillar__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.pillar__title {
+  margin: 0;
+  font-family: 'Handjet', sans-serif;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-weight: 700;
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Borderless status label so it stays chrome, never a nested card. */
+.pillar__status {
+  flex: 0 0 auto;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-ink-dim);
+}
+
+.pillar__status--wip {
+  color: var(--color-ember);
+}
+
+.pillar__body {
+  margin: 0 0 1.4rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-ink-dim);
+}
+
+/* Terminal-style bullets: ember prompt caret instead of a disc. */
+.pillar__points {
+  list-style: none;
+  margin: 0 0 1.6rem;
+  padding: 0;
+}
+
+.pillar__points li {
+  position: relative;
+  padding-left: 1.3rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--color-ink);
+}
+
+.pillar__points li + li {
+  margin-top: 0.4rem;
+}
+
+.pillar__points li::before {
+  content: '\203A';
+  position: absolute;
+  left: 0;
+  color: var(--color-ember);
+  font-weight: 600;
+}
+
+/* Powered-down arcade screen: bordered panel with faint ember scanlines
+   over a warm near-black, a caption flagging it as a placeholder. Pinned
+   to the card floor so all three visuals share a baseline. */
+.pillar__screen {
+  margin-top: auto;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  border: 2px solid var(--color-line);
+  background-color: oklch(0.18 0.02 60);
+  background-image: repeating-linear-gradient(
+    0deg,
+    oklch(0.45 0.15 40 / 0.14) 0,
+    oklch(0.45 0.15 40 / 0.14) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
+.pillar__screen span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-ink-dim);
+}
+
+@media (max-width: 820px) {
+  .pillars {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ---------- contact ---------- */
 
 .contact__mail {
+  position: relative;
   margin: 1rem 0 2.5rem;
+  padding: 0;
+  background: none;
+  border: none;
+  border-bottom: 0.08em solid var(--color-ember);
+  font-family: inherit;
   /* Min bumped from 1.8rem: Handjet's "@" glyph loses its inner swirl
      and reads as a blob at very small pixel sizes. A bit more room to
      render keeps it legible on narrow phones. */
   font-size: clamp(2.1rem, 5.5vw, 4.5rem);
   font-weight: 700;
+  line-height: 1;
   color: var(--color-ink);
   text-decoration: none;
-  border-bottom: 0.08em solid var(--color-ember);
+  cursor: pointer;
   transition: color 0.2s;
 }
 
@@ -814,6 +976,37 @@ span.writlist__link:hover .writlist__name {
 .contact__mail:focus-visible {
   color: var(--color-ember);
   outline: none;
+}
+
+/* Hover/focus tooltip in the signature bordered-box language. Text comes
+   from data-tip so contact.js can flip it to "Copied!" on click. */
+.contact__mail::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 0.9rem);
+  left: 50%;
+  transform: translate(-50%, 6px);
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--color-ink);
+  background: var(--color-bg);
+  box-shadow: 3px 3px 0 var(--color-ember);
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 0.7rem;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-ink);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s, transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contact__mail:hover::after,
+.contact__mail:focus-visible::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .contact__links {

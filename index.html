@@ -77,64 +77,109 @@
         <div class="page__inner">
           <p class="page__kicker" data-reveal>01 / Work</p>
           <h2 class="page__title" data-reveal>Selected<br />Projects</h2>
-          <ul class="worklist">
-            <li class="worklist__row" data-reveal>
+          <ul class="workrows">
+            <li data-reveal>
               <!-- In-site case study (#cs-pai) hidden for now; external link instead.
                    To restore: swap href/data-nav back to #cs-pai, drop target/rel and the ext arrow,
                    and re-add 'cs-pai' to VIEWS in js/menu.js. -->
-              <a href="https://www.figma.com/proto/fZWvN8XauCtWmwd46BbOyD/Portfolio?node-id=1-4882&t=CUnQCotD8SODXFba-1" class="worklist__link" target="_blank" rel="noopener">
-                <span class="worklist__name">Redesigning Presentations.ai&nbsp;<span class="worklist__ext" aria-hidden="true">&#8599;</span></span>
-                <span class="worklist__meta">Case study · Product redesign</span>
+              <a class="workrow" href="https://www.figma.com/proto/fZWvN8XauCtWmwd46BbOyD/Portfolio?node-id=1-4882&t=CUnQCotD8SODXFba-1" target="_blank" rel="noopener">
+                <div class="workrow__head">
+                  <span class="workrow__meta">Case study &middot; Product redesign</span>
+                  <h3 class="workrow__name">Redesigning Presentations.ai</h3>
+                </div>
+                <svg class="workrow__ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                  <path d="M7 17 L17 7" />
+                  <path d="M8.5 7 H17 V15.5" />
+                </svg>
+                <p class="workrow__desc">
+                  Rebuilt an AI-first presentation tool from the foundation up:
+                  file architecture, a clearer dashboard, collaboration and
+                  invite flows, and a refreshed visual language built to scale.
+                </p>
               </a>
-              <img class="worklist__thumb" src="assets/cs-pai/dashboard-browser.jpg" alt="New Presentations.ai dashboard" loading="lazy" />
             </li>
-            <li class="worklist__row" data-reveal>
-              <a href="https://medium.com/@TejasDua/building-quick-checkout-for-150mn-users-at-disney-hotstar-464b0c26062f" class="worklist__link" target="_blank" rel="noopener">
-                <span class="worklist__name">Quick Checkout for Hotstar&nbsp;<span class="worklist__ext" aria-hidden="true">&#8599;</span></span>
-                <span class="worklist__meta">Case study · $15M projected</span>
+            <li data-reveal>
+              <a class="workrow" href="https://medium.com/@TejasDua/building-quick-checkout-for-150mn-users-at-disney-hotstar-464b0c26062f" target="_blank" rel="noopener">
+                <div class="workrow__head">
+                  <span class="workrow__meta">Case study &middot; $15M projected</span>
+                  <h3 class="workrow__name">Quick Checkout for Hotstar</h3>
+                </div>
+                <svg class="workrow__ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                  <path d="M7 17 L17 7" />
+                  <path d="M8.5 7 H17 V15.5" />
+                </svg>
+                <p class="workrow__desc">
+                  A one-tap subscription checkout for 150M+ users, projected at
+                  $15M in incremental revenue by stripping friction out of the
+                  highest-intent moment in the funnel.
+                </p>
               </a>
-              <img class="worklist__thumb" src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=480&q=80" alt="Quick Checkout for Hotstar preview" loading="lazy" />
             </li>
-            <li class="worklist__row" data-reveal>
-              <a href="https://medium.com/@TejasDua/tesseract-time-travel-made-simpler-b5b98ac322e9" class="worklist__link" target="_blank" rel="noopener">
-                <span class="worklist__name">Tesseract&nbsp;<span class="worklist__ext" aria-hidden="true">&#8599;</span></span>
-                <span class="worklist__meta">Design sprint · IIT Roorkee</span>
+            <li data-reveal>
+              <a class="workrow" href="https://medium.com/@TejasDua/tesseract-time-travel-made-simpler-b5b98ac322e9" target="_blank" rel="noopener">
+                <div class="workrow__head">
+                  <span class="workrow__meta">Design sprint &middot; IIT Roorkee</span>
+                  <h3 class="workrow__name">Tesseract</h3>
+                </div>
+                <svg class="workrow__ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                  <path d="M7 17 L17 7" />
+                  <path d="M8.5 7 H17 V15.5" />
+                </svg>
+                <p class="workrow__desc">
+                  An IIT Roorkee design sprint reimagining time travel as
+                  something simple and playful; a systems-thinking exploration
+                  taken end to end.
+                </p>
               </a>
-              <img class="worklist__thumb" src="https://images.unsplash.com/photo-1501139083538-0139583c060f?auto=format&fit=crop&w=480&q=80" alt="Tesseract time travel app preview" loading="lazy" />
             </li>
           </ul>
-          <nav class="pagenav" aria-label="Section navigation">
-            <a href="#home" data-nav="home" class="pagenav__home">&larr; Index</a>
-            <a href="#ai" data-nav="ai" class="pagenav__next">Next &middot; 02 / AI Experiments <span aria-hidden="true">&rarr;</span></a>
-          </nav>
         </div>
       </section>
 
       <!-- ABOUT -->
       <section class="page page--about" data-page="about" aria-hidden="true">
-        <div class="page__inner page__inner--split">
-          <div>
+        <div class="page__inner page__inner--split page__inner--about">
+          <div class="about__id">
             <p class="page__kicker" data-reveal>03 / About</p>
-            <h2 class="page__title" data-reveal>Storyteller,<br />designer<br />and artist</h2>
+            <figure class="about__photo" data-reveal>
+              <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=900&q=80" alt="Foggy ridge at dusk, stand-in portrait" loading="lazy" />
+              <figcaption>Stand-in photo. Swap for a portrait.</figcaption>
+            </figure>
+          </div>
+          <div class="about__detail">
+            <h3 class="about__h" data-reveal>About</h3>
             <p class="about__lead" data-reveal>
-              Your friendly neighborhood designer with a side quest in fitness and
-              games. I do product design at Presentations.ai, after stints at
-              Disney+ Hotstar and Navi.
+              Your friendly neighborhood designer with a side quest in fitness
+              and games. I do product design at Presentations.ai, after stints
+              at Disney+ Hotstar and Navi. Storyteller first, pixels second; I
+              like making complex products feel obvious, and I do it with a
+              smile.
             </p>
-            <ul class="about__facts">
-              <li data-reveal><b>Now</b> Product design at Presentations.ai</li>
-              <li data-reveal><b>Formerly</b> Disney+ Hotstar, Navi</li>
-              <li data-reveal><b>Off screen</b> Fitness, games, good company</li>
+
+            <h3 class="about__h about__h--exp" data-reveal>Experience</h3>
+            <ul class="exp">
+              <li class="exp__row" data-reveal>
+                <span class="exp__co">Presentations.ai</span>
+                <span class="exp__role">Product Designer</span>
+                <span class="exp__year">2025 &mdash; Now</span>
+              </li>
+              <li class="exp__row" data-reveal>
+                <span class="exp__co">Navi</span>
+                <span class="exp__role">Product Design Intern</span>
+                <span class="exp__year">2025</span>
+              </li>
+              <li class="exp__row" data-reveal>
+                <span class="exp__co">Disney+ Hotstar</span>
+                <span class="exp__role">Product Design Intern</span>
+                <span class="exp__year">2024</span>
+              </li>
+              <li class="exp__row" data-reveal>
+                <span class="exp__co">IIT Roorkee</span>
+                <span class="exp__role">Integrated M.Tech</span>
+                <span class="exp__year">2020 &ndash; 25</span>
+              </li>
             </ul>
           </div>
-          <figure class="about__photo" data-reveal>
-            <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=900&q=80" alt="Foggy ridge at dusk, stand-in portrait" loading="lazy" />
-            <figcaption>Stand-in photo. Swap for a portrait.</figcaption>
-          </figure>
-          <nav class="pagenav" aria-label="Section navigation">
-            <a href="#home" data-nav="home" class="pagenav__home">&larr; Index</a>
-            <a href="#contact" data-nav="contact" class="pagenav__next">Next &middot; 04 / Contact <span aria-hidden="true">&rarr;</span></a>
-          </nav>
         </div>
       </section>
 
@@ -205,33 +250,57 @@
         <div class="page__inner">
           <p class="page__kicker" data-reveal>02 / AI Experiments</p>
           <h2 class="page__title" data-reveal>AI<br />experiments</h2>
-          <p class="about__lead" data-reveal>
-            Prompt-built toys, agent workflows and generation experiments.
-          </p>
-          <ul class="writlist">
-            <li data-reveal>
-              <span class="writlist__link">
-                <span class="writlist__date">Soon</span>
-                <span class="writlist__name">Freeform slide generation, no templates</span>
-              </span>
-            </li>
-            <li data-reveal>
-              <span class="writlist__link">
-                <span class="writlist__date">Soon</span>
-                <span class="writlist__name">Hindi dub pipeline</span>
-              </span>
-            </li>
-            <li data-reveal>
-              <span class="writlist__link">
-                <span class="writlist__date">Soon</span>
-                <span class="writlist__name">Reels script engine</span>
-              </span>
-            </li>
-          </ul>
-          <nav class="pagenav" aria-label="Section navigation">
-            <a href="#home" data-nav="home" class="pagenav__home">&larr; Index</a>
-            <a href="#about" data-nav="about" class="pagenav__next">Next &middot; 03 / About <span aria-hidden="true">&rarr;</span></a>
-          </nav>
+          <div class="pillars">
+            <article class="pillar" data-reveal>
+              <div class="pillar__head">
+                <h3 class="pillar__title">Freeform slide generation</h3>
+                <span class="pillar__status">Soon</span>
+              </div>
+              <p class="pillar__body">
+                Decks built straight from a prompt. No template to pick, no grid
+                to fight; layout, hierarchy and rhythm decided by the model
+                instead of a starter file.
+              </p>
+              <ul class="pillar__points">
+                <li>Prompt to full deck</li>
+                <li>Model-driven layout</li>
+                <li>Zero templates</li>
+              </ul>
+              <div class="pillar__screen" aria-hidden="true"><span>Preview soon</span></div>
+            </article>
+            <article class="pillar" data-reveal>
+              <div class="pillar__head">
+                <h3 class="pillar__title">Hindi dub pipeline</h3>
+                <span class="pillar__status pillar__status--wip">Building</span>
+              </div>
+              <p class="pillar__body">
+                An end-to-end pass that takes an English video and returns a
+                clean Hindi dub, with timing and tone kept intact.
+              </p>
+              <ul class="pillar__points">
+                <li>Transcribe and translate</li>
+                <li>Voice-matched TTS</li>
+                <li>Auto-synced timing</li>
+              </ul>
+              <div class="pillar__screen" aria-hidden="true"><span>Preview soon</span></div>
+            </article>
+            <article class="pillar" data-reveal>
+              <div class="pillar__head">
+                <h3 class="pillar__title">Reels script engine</h3>
+                <span class="pillar__status">Soon</span>
+              </div>
+              <p class="pillar__body">
+                Feed it a topic, get a shoot-ready reel script: hook, beats and
+                captions written in a voice I actually want to post in.
+              </p>
+              <ul class="pillar__points">
+                <li>Hook, beats, captions</li>
+                <li>Tuned to my voice</li>
+                <li>Shoot-ready output</li>
+              </ul>
+              <div class="pillar__screen" aria-hidden="true"><span>Preview soon</span></div>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -240,17 +309,13 @@
         <div class="page__inner page__inner--center">
           <p class="page__kicker" data-reveal>04 / Contact</p>
           <h2 class="page__title page__title--center" data-reveal>Say hello</h2>
-          <a class="contact__mail" href="mailto:tejas.dua.design@gmail.com" data-reveal>tejas.dua.design@gmail.com</a>
+          <button class="contact__mail" type="button" data-email="tejas.dua.design@gmail.com" data-tip="Tap to copy email" aria-label="Copy email address to clipboard" data-reveal>tejas.dua.design@gmail.com</button>
           <ul class="contact__links">
             <li data-reveal><a href="https://www.linkedin.com/in/tejas-dua-0a3715204/" target="_blank" rel="noopener">LinkedIn</a></li>
             <li data-reveal><a href="https://medium.com/@TejasDua" target="_blank" rel="noopener">Medium</a></li>
             <li data-reveal><a href="https://github.com/tejasdua143" target="_blank" rel="noopener">GitHub</a></li>
             <li data-reveal><a href="assets/TejasDua-Resume.pdf" download="TejasDua-Resume.pdf">Resume <span aria-hidden="true">&#8595;</span></a></li>
           </ul>
-          <nav class="pagenav pagenav--full" aria-label="Section navigation">
-            <a href="#home" data-nav="home" class="pagenav__home">&larr; Index</a>
-            <a href="#home" data-nav="home" class="pagenav__next">Next &middot; Index <span aria-hidden="true">&rarr;</span></a>
-          </nav>
         </div>
       </section>
 
@@ -895,5 +960,6 @@
     <script src="js/menu.js"></script>
     <script src="js/drift.js"></script>
     <script src="js/franky.js"></script>
+    <script src="js/contact.js"></script>
   </body>
 </html>
