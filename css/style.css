@@ -430,11 +430,11 @@ main > * {
   margin-top: clamp(3rem, 8vh, 5rem);
   padding-top: 1.2rem;
   border-top: 1px solid var(--color-line);
-  font-family: 'Handjet', sans-serif;
-  font-weight: 600;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-size: 1.1rem;
+  font-size: 0.85rem;
 }
 
 .pagenav--full {
@@ -494,8 +494,11 @@ main > * {
 }
 
 .worklist__meta {
-  font-size: 1.1rem;
-  letter-spacing: 0.15em;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--color-ink-dim);
   white-space: normal;
   text-align: right;
@@ -547,30 +550,6 @@ main > * {
   transform: translate(0.25em, -0.65em);
 }
 
-.about__exp {
-  list-style: none;
-  margin: 1.8rem 0 0;
-  padding: 0;
-  max-width: 100%;
-}
-
-.about__exp li {
-  display: grid;
-  grid-template-columns: 8rem 1fr;
-  column-gap: 1.2rem;
-  padding: 0.5rem 0;
-  border-top: 1px solid var(--color-line);
-  font-size: 1.05rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--color-ink-dim);
-}
-
-.about__exp span {
-  color: var(--color-ember);
-  font-weight: 700;
-}
-
 .about__lead {
   max-width: 40ch;
   margin: 0 0 2.5rem;
@@ -593,12 +572,15 @@ main > * {
   column-gap: 1.2rem;
   padding: 0.7rem 0;
   border-top: 1px solid var(--color-line);
-  font-size: 1.25rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
 .about__facts b {
+  font-family: 'Handjet', sans-serif;
   font-weight: 700;
   color: var(--color-ember);
 }
@@ -618,7 +600,9 @@ main > * {
 
 .about__photo figcaption {
   margin-top: 0.6rem;
-  font-size: 1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-ink-dim);
@@ -700,7 +684,9 @@ main > * {
 
 .writlist__date {
   flex: 0 0 5rem;
-  font-size: 1.05rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--color-ink-dim);
@@ -752,10 +738,12 @@ main > * {
 }
 
 .contact__links a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
   color: var(--color-ink-dim);
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 1.3rem;
+  font-size: 0.85rem;
   letter-spacing: 0.15em;
   transition: color 0.2s;
 }
@@ -1132,7 +1120,9 @@ main > * {
 .case__figure figcaption,
 .case__viz figcaption {
   margin-top: 0.6rem;
-  font-size: 0.85rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--color-ink-dim);

@@ -49,16 +49,21 @@ Color meaning is fixed: ember always means "active, hovered, or alive."
 
 Two families, each with a clear job. Never swap them.
 
-- **Handjet** (pixel display), weights 300 to 900. Used for everything structural:
-  the hero name, all headings, menu items, buttons, labels, stat numbers,
-  pull-quotes. This is the brand's voice. Set most display type uppercase with
-  positive letter-spacing (`0.02em` to `0.25em` depending on size).
-- **IBM Plex Mono** (terminal mono), weights 400 and 600. Used for everything you
-  read rather than scan: long-form case-study body copy, leads, list-item names,
-  hints. Sentence case, normal letter-spacing, line-height `1.55` to `1.65`. Runs
-  wide; size it a step smaller than the Handjet equivalent.
+- **Handjet** (pixel display), weights 300 to 900. Display and interactive
+  chrome: the hero name, page titles, project and list names, menu items,
+  buttons and chips, the wordmark, kickers, and fact labels. This is the
+  brand's voice. Set most display type uppercase with positive
+  letter-spacing (`0.02em` to `0.25em` depending on size).
+- **IBM Plex Mono** (terminal mono), weights 400 and 600. Every supporting and
+  reading surface: body copy, leads, metas, dates, fact values, captions, and
+  footer nav. Long-form case-study copy stays sentence case with normal
+  letter-spacing, line-height `1.55` to `1.65`. Short supporting labels
+  (metas, dates, values, captions, footer nav) stay uppercase and tracked but
+  drop to mono at a smaller size. Runs wide; size it a step smaller than the
+  Handjet equivalent.
 
-The rule: **Handjet for anything you scan, Plex Mono for anything you read.**
+The rule: **Handjet for display and interactive chrome, Plex Mono for every
+supporting and reading surface.**
 
 Scale is fluid with `clamp()` and steps at least 1.25 apart:
 
