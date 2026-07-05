@@ -89,7 +89,6 @@ main > * {
   text-transform: uppercase;
   font-size: 1.05rem;
   letter-spacing: 0.12em;
-  opacity: 0.7;
 }
 
 .frame__memory {
@@ -97,6 +96,39 @@ main > * {
   text-align: center;
   pointer-events: auto;
   transition: color 0.2s;
+  opacity: 0.7;
+}
+
+/* Bottom-left chrome chip, same box language as the toggle. */
+.frame__resume {
+  grid-column: 1;
+  justify-self: start;
+  pointer-events: auto;
+  border: 2px solid var(--color-ink);
+  background: var(--color-bg);
+  color: var(--color-ink);
+  text-decoration: none;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.55rem 0.8rem;
+  box-shadow: 4px 4px 0 var(--color-ember);
+  transition: box-shadow 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.frame__resume:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--color-ember);
+}
+
+.frame__resume:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--color-ember);
+}
+
+.frame__resume:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: 4px;
 }
 
 .frame__memory:hover {
@@ -1719,6 +1751,11 @@ main > * {
   .frame__memory {
     grid-column: 1;
     text-align: left;
+  }
+
+  .frame__resume {
+    grid-row: 1;
+    margin-bottom: 0.6rem;
   }
 
   .case__duo {
