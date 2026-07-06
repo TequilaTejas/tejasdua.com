@@ -13,7 +13,10 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <body class="loading gated" data-view="home">
+  <body class="loading" data-view="home">
+    <!-- Password gate DISABLED (site is public). To re-enable: add "gated"
+         back to the body class, uncomment this block and the js/gate.js
+         script tag at the bottom.
     <div class="gate" role="dialog" aria-label="Password required">
       <div class="gate__box">
         <p class="gate__logo">TD</p>
@@ -25,6 +28,7 @@
         <p class="gate__error" role="alert"></p>
       </div>
     </div>
+    -->
 
     <main>
       <button class="wordmark" aria-label="Go to home">TD</button>
@@ -64,9 +68,12 @@
       </h1>
 
       <header class="frame">
-        <a class="frame__resume" href="assets/TejasDua-Resume.pdf" download="TejasDua-Resume.pdf">Resume <span aria-hidden="true">&#8595;</span></a>
         <p class="frame__memory">Designing in memory of Franky 🐾</p>
       </header>
+
+      <!-- Persistent chrome corner, like the wordmark/toggle/sound chip,
+           so the resume stays reachable on subpages and the open menu. -->
+      <a class="frame__resume" href="assets/TejasDua-Resume.pdf" download="TejasDua-Resume.pdf">Resume <span aria-hidden="true">&#8595;</span></a>
 
       <button class="soundchip" type="button" aria-pressed="true" aria-label="Turn sound off">
         <span class="soundchip__bars" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -970,7 +977,9 @@
 
     <div class="crt" aria-hidden="true"></div>
 
+    <!-- Gate disabled; see the commented block at the top of body.
     <script src="js/gate.js"></script>
+    -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/drift.js"></script>
