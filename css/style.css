@@ -636,7 +636,9 @@ main > * {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: clamp(1rem, 2vw, 1.6rem);
+  /* Between-card air must beat inside-card padding, or the panels read
+     as one cramped stack. */
+  gap: clamp(2rem, 4vw, 3.5rem);
 }
 
 /* Full-width row panel: title/meta on the left, description on the right.
@@ -646,7 +648,10 @@ main > * {
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(1.5rem, 4vw, 4rem);
+  /* Column gap only: the visual band's own margin controls the vertical
+     rhythm, so a row gap here would double it up. */
+  column-gap: clamp(1.5rem, 4vw, 4rem);
+  row-gap: 0;
   align-items: start;
   padding: clamp(1.6rem, 3vw, 2.6rem);
   border: 2px solid var(--color-ink);
@@ -673,17 +678,6 @@ main > * {
    rule at equal source order. */
 .workrow.workrow--static:hover .workrow__name {
   color: var(--color-ink);
-}
-
-.workrow__meta {
-  display: block;
-  margin-bottom: 0.7rem;
-  font-family: 'IBM Plex Mono', monospace;
-  font-weight: 400;
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-ink-dim);
 }
 
 .workrow__name {
@@ -723,7 +717,9 @@ main > * {
   grid-column: 1 / -1;
   display: grid;
   place-items: center;
-  margin-top: clamp(1.2rem, 2vw, 1.8rem);
+  /* Matches the card padding so the band sits at a consistent inset from
+     text above and border below. */
+  margin-top: clamp(1.6rem, 3vw, 2.6rem);
   aspect-ratio: 21 / 8;
   background-color: var(--color-ember);
   background-image: repeating-linear-gradient(
@@ -776,7 +772,9 @@ main > * {
 @media (max-width: 820px) {
   .workrow {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    /* Title stacks over description here, so a row gap is wanted again —
+       but only between the text blocks; the visual keeps its own margin. */
+    row-gap: 1rem;
   }
 }
 
