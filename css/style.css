@@ -765,6 +765,14 @@ main > * {
   filter: saturate(0.85) contrast(1.05);
 }
 
+/* PARKED per Tejas: visual bands hidden for now. Markup and the
+   Presentations.ai dashboard shot stay in place — delete this rule to
+   bring them back. Placed after every .workrow__visual rule so nothing
+   (e.g. the display: grid above) outcascades it. */
+.workrow__visual {
+  display: none;
+}
+
 @media (max-width: 820px) {
   .workrow__visual {
     aspect-ratio: 16 / 9;
