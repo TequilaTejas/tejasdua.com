@@ -2344,7 +2344,9 @@ body.franky-active .frame__resume {
 
 .franky__frame {
   width: 240px;
-  aspect-ratio: 4 / 5;
+  /* Matches the pixel-art memorial's 3:4 canvas so the "forever in our
+     hearts" caption at its foot never crops. */
+  aspect-ratio: 3 / 4;
   border: 2px solid var(--color-ink);
   box-shadow: 8px 8px 0 var(--color-ember-deep);
   overflow: hidden;
