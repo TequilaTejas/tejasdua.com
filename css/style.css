@@ -636,10 +636,14 @@ main > * {
   padding: 0;
   display: flex;
   flex-direction: column;
-  /* Between-card air scales with the panels themselves: these are
-     ~700px-tall pieces, so the separation has to be generous or they
-     read as one continuous stack. */
-  gap: clamp(3.5rem, 8vh, 7rem);
+  /* Tuned for the compact text-only cards (the tall visual bands are
+     parked): more air than the inside padding, less than a void. */
+  gap: clamp(2rem, 4.5vh, 3.25rem);
+  counter-reset: work;
+}
+
+.workrows > li {
+  counter-increment: work;
 }
 
 /* Full-width row panel: title/meta on the left, description on the right.
@@ -666,6 +670,37 @@ main > * {
 .workrow:hover {
   transform: translate(-3px, -3px);
   box-shadow: 9px 9px 0 var(--color-ember);
+}
+
+/* Giant ghost index numeral in the card's bottom-right corner, behind
+   the content: arcade cabinet serial numbers. Warms faintly on hover. */
+.workrow::before {
+  content: counter(work, decimal-leading-zero);
+  position: absolute;
+  right: 0.15em;
+  bottom: 0;
+  z-index: 0;
+  font-family: 'Handjet', sans-serif;
+  font-weight: 800;
+  font-size: clamp(6rem, 11vw, 9.5rem);
+  line-height: 0.75;
+  letter-spacing: 0.02em;
+  color: var(--color-ember-deep);
+  opacity: 0.28;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.workrow:hover::before {
+  opacity: 0.45;
+}
+
+/* Content sits above the ghost numeral (the ext arrow is absolutely
+   positioned already and gets its z-index in its own rule). */
+.workrow__head,
+.workrow__desc {
+  position: relative;
+  z-index: 1;
 }
 
 /* Rows without a destination yet: same panel, none of the link
@@ -783,6 +818,7 @@ main > * {
   position: absolute;
   top: clamp(1.6rem, 3vw, 2.6rem);
   right: clamp(1.6rem, 3vw, 2.6rem);
+  z-index: 1;
   width: 1.4rem;
   height: 1.4rem;
   color: var(--color-ember);
