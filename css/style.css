@@ -1077,10 +1077,6 @@ a.pillar:hover .pillar__title {
   color: var(--color-ember);
 }
 
-a.pillar:hover .pillar__screen span {
-  color: var(--color-ember);
-}
-
 a.pillar:focus-visible {
   outline: 2px solid var(--color-ember);
   outline-offset: 4px;
@@ -1202,31 +1198,45 @@ a.pillar:focus-visible {
   font-weight: 600;
 }
 
-/* Powered-down arcade screen: bordered panel with faint ember scanlines
-   over a warm near-black, a caption flagging it as a placeholder. Pinned
-   to the card floor so all three visuals share a baseline. */
-.pillar__screen {
+/* CTA chip pinned to the card floor, in the chrome-button box language.
+   On the linked card it invites the click (the whole card is the <a>);
+   the --soon variant sits dim and inert until a link exists. */
+.pillar__cta {
   margin-top: auto;
-  display: grid;
-  place-items: center;
-  aspect-ratio: 16 / 10;
-  border: 2px solid var(--color-line);
-  background-color: oklch(0.18 0.02 60);
-  background-image: repeating-linear-gradient(
-    0deg,
-    oklch(0.45 0.15 40 / 0.14) 0,
-    oklch(0.45 0.15 40 / 0.14) 1px,
-    transparent 1px,
-    transparent 4px
-  );
+  align-self: start;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  border: 2px solid var(--color-ink);
+  box-shadow: 4px 4px 0 var(--color-ember);
+  font-family: 'Handjet', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-ink);
+  transition: box-shadow 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s;
 }
 
-.pillar__screen span {
-  font-family: 'IBM Plex Mono', monospace;
-  font-weight: 400;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
+.pillar__cta-arrow {
+  width: 0.85em;
+  height: 0.85em;
+  align-self: center;
+  color: var(--color-ember);
+}
+
+a.pillar:hover .pillar__cta {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--color-ember);
+  color: var(--color-ember);
+}
+
+.pillar__cta--soon {
+  border-color: var(--color-line);
+  box-shadow: 4px 4px 0 var(--color-ember-deep);
   color: var(--color-ink-dim);
 }
 
