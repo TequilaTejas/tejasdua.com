@@ -743,6 +743,28 @@ main > * {
   color: var(--color-ink);
 }
 
+/* Real UI screenshot on the hatched band: bottom-flush and centered,
+   sized a touch taller than the band so the top edge crops through the
+   browser chrome — the window peeps up from the card's bottom line. */
+.workrow__visual {
+  position: relative;
+  overflow: hidden;
+}
+
+.workrow__shot {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  /* At this width the window stands a hair taller than the band, so the
+     band's top edge slices through the browser URL bar: cropped "a bit",
+     peeping up from the bottom line. */
+  width: 72%;
+  border: 2px solid var(--color-ink);
+  border-bottom: 0;
+  filter: saturate(0.85) contrast(1.05);
+}
+
 @media (max-width: 820px) {
   .workrow__visual {
     aspect-ratio: 16 / 9;
